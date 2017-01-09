@@ -1,6 +1,6 @@
-class CreateHumans < ActiveRecord::Migration[5.0]
+class CreateUsers < ActiveRecord::Migration[5.0]
   def change
-    create_table :humans do |t|
+    create_table :users do |t|
       t.string :name
       t.string :email, unique: true
       t.string :password_digest

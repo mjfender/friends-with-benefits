@@ -15,7 +15,30 @@ ActiveRecord::Schema.define(version: 20170109203936) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "humans", force: :cascade do |t|
+  create_table "needs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "headline"
+    t.text     "description"
+    t.datetime "expiration"
+    t.text     "perk"
+    t.boolean  "completed",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["user_id"], name: "index_needs_on_user_id", using: :btree
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "need_id"
+    t.text     "comment"
+    t.boolean  "yes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["need_id"], name: "index_replies_on_need_id", using: :btree
+    t.index ["user_id"], name: "index_replies_on_user_id", using: :btree
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
@@ -24,29 +47,6 @@ ActiveRecord::Schema.define(version: 20170109203936) do
     t.string   "zipcode"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-  end
-
-  create_table "needs", force: :cascade do |t|
-    t.integer  "human_id"
-    t.string   "headline"
-    t.text     "description"
-    t.datetime "expiration"
-    t.text     "perk"
-    t.boolean  "completed",   default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.index ["human_id"], name: "index_needs_on_human_id", using: :btree
-  end
-
-  create_table "replies", force: :cascade do |t|
-    t.integer  "human_id"
-    t.integer  "need_id"
-    t.text     "comment"
-    t.boolean  "yes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["human_id"], name: "index_replies_on_human_id", using: :btree
-    t.index ["need_id"], name: "index_replies_on_need_id", using: :btree
   end
 
 end

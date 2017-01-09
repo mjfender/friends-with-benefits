@@ -1,0 +1,14 @@
+<h1> <%= @need.headline %> </h1>
+<h3> by: <%= link_to @need.user.name, user_path(@need.user) %> </h3>
+<% if @need.description %>
+<h2> <%= @need.user.name %> says...</h2>
+<p> <%= @need.description %></p>
+<% end %>
+
+<% if @need.expiration %>
+<!-- create method to show date in nicer format -->
+<h2> Expiring on <%= @need.expiration %> </h2>
+<% end %>
+
+<!-- Total number of replies, deadline -->
+<!-- Add list of replies with their users-->

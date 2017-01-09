@@ -1,4 +1,4 @@
-class Human < ApplicationRecord
+class User < ApplicationRecord
   has_secure_password
   has_many :needs
   has_many :replies
