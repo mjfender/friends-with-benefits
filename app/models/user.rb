@@ -1,4 +1,4 @@
-class Human < ApplicationRecord
+class User < ApplicationRecord
   has_secure_password
   has_many :needs
   has_many :replies
@@ -6,6 +6,5 @@ class Human < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true
   validates :password, presence: true
-  
 
 end
