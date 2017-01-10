@@ -1,5 +1,6 @@
 <h1>Welcome back!</h1>
-<%= link_to "Log Out", logout_path %>
+<%= link_to "Log Out", logout_path %></br></br>
+<%= link_to "Delete your Account", user_path(@user), method: "DELETE" %>
 
 <h2><%= @user.name %></h2>
 <%= image_tag @user.avatar.url(:thumb) %>
