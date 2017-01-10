@@ -13,6 +13,13 @@
 <% else %>
   <h2> Needs </h2>
   <% @other_needs.each do |need| %>
-    <%= link_to "#{need.headline}", need_path(need) %> <br>
+    <%= link_to "#{need.headline}", need_path(need) %>
+    <%= form_for(new_reply_instance) do |f| %>
+      <%= f.hidden_field :need_id, :value => need.id %>
+      <%= f.hidden_field :yes, :value => true %>
+      <%= f.submit "Yes, I'll help!"  %>
+      <% end %><br>
   <% end %>
+      
+
 <% end %>

@@ -1,3 +1,5 @@
+<p> <%= flash[:message] %> </p>
+
 <h1> <%= @need.headline %> </h1>
 <h3> by: <%= link_to @need.user.name, user_path(@need.user) %><%= " (That's you!)" if need_belongs_to_user? %></h3>
 
@@ -25,6 +27,25 @@
 
 <%= button_to "Reply", new_reply_path, action: "get", method: "get", params: {need_id: @need.id} %>
 
+<h2>Replies</h2>
+<ul>
+<% if @replies.empty? %>
+  <p> Nobody has replied yet. Share your need and stay tuned! </p>
+<% else %>
+<% @replies.each do |reply| %>
+  <% if !reply.comment.nil? && !reply.comment.empty? %>
+  <li>"<%= reply.comment %>" &mdash; <%= link_to reply.user.name, user_path(reply.user) %><br>
+  <% if reply.yes %><strong>(Yes, I want to help!)</strong><% end %> </li>
+  <% else %>
+  <li>   <strong>Yes, I want to help!</strong> &mdash; <%= link_to reply.user.name, user_path(reply.user) %></li>
+  <% end %>
+  <br> <% if current_user == reply.user.id %>
+  <%= link_to "Edit", edit_reply_path(reply) %> &nbsp;&nbsp;&#124;&nbsp;&nbsp; <%= link_to "Delete", delete_reply_path(reply), method: :delete %><br><br>
+  <% end %>
+
+<% end %>
+<% end %>
+</ul>
 
 
 <!-- Total number of replies, deadline -->
