@@ -14,7 +14,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    redirect_to user_path(@user)          #"needs index page"
+    session[:user_id] = @user.id
+    redirect_to user_path(@user)     
   end
 
   def destroy
