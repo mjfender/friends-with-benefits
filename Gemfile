@@ -41,7 +41,12 @@ group :development, :test do
   # gem 'byebug', platform: :mri
   gem 'pry'
   gem 'ffaker'
+  gem 'database_cleaner'
+  gem 'rspec-rails'
+
 end
+
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
