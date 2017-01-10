@@ -1,5 +1,5 @@
 class NeedsController < ApplicationController
-  # before_action :authorize_user
+  before_action :authorize_user
   before_action :set_user
 
   def new
@@ -9,7 +9,7 @@ class NeedsController < ApplicationController
   def create
     @new_need = Need.new(need_params)
     @new_need.user = @user
-    if @new_need.save 
+    if @new_need.save
       redirect_to @new_need
     else
       redirect_to new_need_path
@@ -36,7 +36,7 @@ class NeedsController < ApplicationController
     if @need.update(need_params)
       redirect_to @need
     else
-      # flash[:notice] 
+      # flash[:notice]
       redirect_to edit_need_path(@need)
     end
 
