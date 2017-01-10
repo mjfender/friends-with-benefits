@@ -2,5 +2,6 @@
 <%= link_to "Log Out", logout_path %>
 
 <h2><%= @user.name %></h2>
+<%= image_tag @user.avatar.url(:thumb) %>
 
 <h3><%= @user.bio %></h3>
