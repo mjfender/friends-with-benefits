@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   get '/signin', to: 'sessions#new', as: 'signin'
   # remove signin in the Needs files, eventually :)
   post '/sessions', to: 'sessions#create'
+  get '/sessions/destroy', to: 'sessions#destroy', as: 'logout'
 
 end
