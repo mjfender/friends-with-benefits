@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: 'user'
   post '/users', to: 'users#create'
 
+  delete '/users/:id', to: 'users#destroy'
+
   get '/login', to: 'sessions#new', as: 'login'
   get '/signin', to: 'sessions#new', as: 'signin'
   # remove signin in the Needs files, eventually :)
