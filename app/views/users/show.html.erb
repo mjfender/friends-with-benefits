@@ -1,4 +1,4 @@
-<h1>Welcome back!</h1>
+<h1><%= "Welcome back #{@user.name}!" %></h1>
 <%= link_to "Log Out", logout_path %></br></br>
 <%= link_to "Delete your Account", user_path(@user), method: "DELETE" %>
 
