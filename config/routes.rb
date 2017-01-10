@@ -19,4 +19,10 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#create'
   get '/sessions/destroy', to: 'sessions#destroy', as: 'logout'
 
+
+  get '/replies/new', to: 'replies#new', as: 'new_reply'
+  post '/replies', to: 'replies#create'
+  get '/replies/:id/edit', to: 'replies#edit', as: 'edit_reply'
+  post '/replies/:id', to: 'replies#update'
+
 end
