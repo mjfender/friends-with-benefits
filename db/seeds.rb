@@ -21,8 +21,8 @@ end
 def create_needs
   need = Need.new
   need.user = random_pluck(User)
-  need.headline = FFaker::HipsterIpsum.phrases(phrase_generator)
-  need.description = FFaker::HipsterIpsum.sentences(phrase_generator(0..5))
+  need.headline = FFaker::HipsterIpsum.phrases(phrase_generator).join
+  need.description = FFaker::HipsterIpsum.sentences(phrase_generator(0..5)).join
   need.save
 end
 
