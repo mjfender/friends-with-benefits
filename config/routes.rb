@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :needs
+
   root 'users#new'
   # get '/signup', to: 'users#new', as: 'signup'
 
@@ -8,6 +10,8 @@ Rails.application.routes.draw do
   post '/users', to: 'users#create'
 
   get '/login', to: 'sessions#new', as: 'login'
+  get '/signin', to: 'sessions#new', as: 'signin'
+  # remove signin in the Needs files, eventually :)
   post '/sessions', to: 'sessions#create'
   get '/sessions/destroy', to: 'sessions#destroy', as: 'logout'
 
