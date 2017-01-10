@@ -1,0 +1,18 @@
+<h1> Needs </h1>
+<% if @user_needs.empty? %>
+</h3>You have no needs. <%= link_to "Create a need to get started", new_need_path %></h3>
+<% else %>
+  <h2> Your Needs </h2>
+  <% @user_needs.each do |need| %>
+    <%= link_to "#{need.headline}", need_path(need) %> <br>
+  <% end %>
+<% end %>
+
+<% if @other_needs.empty? %>
+<h3>There are no needs from others. <%= link_to "Invite friends to start helping", new_need_path %></h3>
+<% else %>
+  <h2> Needs </h2>
+  <% @other_needs.each do |need| %>
+    <%= link_to "#{need.headline}", need_path(need) %> <br>
+  <% end %>
+<% end %>
