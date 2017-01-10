@@ -23,7 +23,7 @@
 <br>
 <%= button_to "All Needs", needs_path, action: "get", method: "get"%>
 
-<%= button_to "Reply", reply_path, action: "get", method: "get", params: {need_id: @need.id} %>
+<%= button_to "Reply", new_reply_path, action: "get", method: "get", params: {need_id: @need.id} %>
 
 
 
