@@ -3,18 +3,7 @@ class NeedsController < ApplicationController
   before_action :set_user
 
   def new
-    @need = Need.new unless params[:need]
-    @need = params[:need] if params[:need]
-  end
-
-  def index
-    @needs = Need.mine_and_theirs(@user_id)
-    @user_needs = @needs[:my_needs]
-    @other_needs = @needs[:others_needs]
-  end
-
-  def show
-    @need = Need.find(params[:id])
+    @need = Need.new
   end
 
   def create
@@ -23,15 +12,34 @@ class NeedsController < ApplicationController
     if @new_need.save 
       redirect_to @new_need
     else
-      binding.pry #need to test this- unsure!
-      redirect_to new_need_path(:need => @new_need)
+      redirect_to new_need_path
     end
   end
 
+  def index
+    @needs = Need.mine_and_theirs(@user.id)
+    @user_needs = @needs[:my_needs]
+    @other_needs = @needs[:others_needs]
+  end
+
+  def show
+    @need = Need.find(params[:id])
+  end
+
+
   def edit
+      @need = Need.find(params[:id])
   end
 
   def update
+    @need = Need.find(params[:id])
+    if @need.update(need_params)
+      redirect_to @need
+    else
+      # flash[:notice] 
+      redirect_to edit_need_path(@need)
+    end
+
   end
 
   def destroy

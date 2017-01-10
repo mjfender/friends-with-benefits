@@ -1,14 +1,29 @@
 <h1> <%= @need.headline %> </h1>
-<h3> by: <%= link_to @need.user.name, user_path(@need.user) %> </h3>
+<h3> by: <%= link_to @need.user.name, user_path(@need.user) %><%= " (That's you!)" if need_belongs_to_user? %></h3>
+
+<%= button_to "Edit Your Post", edit_need_path(@need), action: "get", method: "get" if need_belongs_to_user? %>
+
 <% if @need.description %>
-<h2> <%= @need.user.name %> says...</h2>
-<p> <%= @need.description %></p>
+  <% if need_belongs_to_user? %>
+    <h2> You said...</h2>
+  <% else %>
+    <h2> <%= @need.user.name %> says...</h2>
+  <% end %>
+  <p> <%= @need.description %></p>
 <% end %>
+
+
 
 <% if @need.expiration %>
 <!-- create method to show date in nicer format -->
-<h2> Expiring on <%= @need.expiration %> </h2>
+<h2> Expiring on:</h2>
+<%= need_expiration_formatted %><br><br>
 <% end %>
+
+<br>
+<%= button_to "All Needs", needs_path, action: "get", method: "get"%>
+
+
 
 <!-- Total number of replies, deadline -->
 <!-- Add list of replies with their users-->

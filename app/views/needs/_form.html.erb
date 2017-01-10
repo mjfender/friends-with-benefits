@@ -5,5 +5,9 @@
   <%= f.label :description %><br>
   <%= f.text_area :description %><br><br>
 
+  <%= f.label :expiration, "Expiration Date (Optional)" %><br />
+  <%= f.date_select :expiration, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year, end_year: Date.today.year + 3}, {required: true} %><br><br>
+
+
   <%= f.submit %>
 <% end %>
