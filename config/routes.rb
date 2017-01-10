@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   get '/replies/new', to: 'replies#new', as: 'new_reply'
   post '/replies', to: 'replies#create'
   get '/replies/:id/edit', to: 'replies#edit', as: 'edit_reply'
-  post '/replies/:id', to: 'replies#update'
+  patch '/replies/:id', to: 'replies#update'
+  delete '/replies/:id', to: 'replies#destroy', as: 'delete_reply'
+  get '/replies/:id', to: 'replies#show', as: 'reply'
+
 
 end
