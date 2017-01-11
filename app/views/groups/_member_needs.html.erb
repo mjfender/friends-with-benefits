@@ -1,0 +1,4 @@
+<% @group.needs.each do |need| %>
+  <%= render :partial => 'needs/individual_show', 
+      :locals => {:need => need } %>
+<% end %>

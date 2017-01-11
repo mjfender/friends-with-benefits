@@ -1,0 +1,14 @@
+<%= @group.title %>
+<%= @group.description %>
+
+Admins: 
+<% @group.admins.each do |admin| %>
+<%= link_to admin.name, admin %>
+<% end %>
+<hr>
+
+<%= render 'membership_list' %>
+
+
+<%= render 'join_form' if @group.not_member?(@user) %>
+<%= render 'member_needs' if @group.is_member?(@user) %>

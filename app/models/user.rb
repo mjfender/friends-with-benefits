@@ -11,7 +11,14 @@ class User < ApplicationRecord
   
   validates :name, presence: true
   validates :email, presence: true
-  validates :password, presence: true
-  
+
+  def join(new_group)
+    groups << new_group
+    save
+  end
+
+  def display_name(current_user_id)
+    id == current_user_id ? "You" : name
+  end  
 
 end

@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   resources :needs
 
+  resources :groups do 
+    resources :memberships
+  end
+
   root 'users#new'
   # get '/signup', to: 'users#new', as: 'signup'
 
