@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 20170110211129) do
   create_table "memberships", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "user_id"
-    t.boolean  "admin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "admin",      default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["group_id"], name: "index_memberships_on_group_id", using: :btree
     t.index ["user_id"], name: "index_memberships_on_user_id", using: :btree
   end
