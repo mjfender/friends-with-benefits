@@ -1,0 +1,12 @@
+<%= form_for([@need, @event]) do |f| %>
+  <%= f.label "Location" %><br>
+  <%= f.text_field :location %><br><br>
+
+  <%= f.label "Description" %><br>
+  <%= f.text_area :description %><br><br>
+
+  <%= f.label "Date and Time" %> <br>
+  <%= f.datetime_select :time, {order: [:month, :day, :year, :hour, :minute], prompt: { hour: 'Select hour', minute: 'Select minute', day: 'Select day', month: 'Select month', year: 'Select year'}, start_year: Date.today.year, end_year: Date.today.year + 3, ampm: true} %><br><br>
+  <%= f.submit %>
+<% end %>
+  
