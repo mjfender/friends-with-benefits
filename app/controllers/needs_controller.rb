@@ -32,7 +32,10 @@ class NeedsController < ApplicationController
 
 
   def edit
-      @need = Need.find(params[:id])
+    @need = Need.find(params[:id])
+    unless @need.user_id == session[:user_id]
+      redirect_to need_path(@need)
+    end
   end
 
   def update
