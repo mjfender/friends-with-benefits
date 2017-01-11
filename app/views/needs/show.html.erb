@@ -1,4 +1,4 @@
-<p> <%= flash[:message] %> </p>
+<p> <%= flash[:notice] %> </p>
 
 <h1> <%= @need.headline %> </h1>
 <h3> by: <%= link_to @need.user.name, user_path(@need.user) %><%= " (That's you!)" if need_belongs_to_user? %></h3>
@@ -40,7 +40,11 @@
   <li>   <strong>Yes, I want to help!</strong> &mdash; <%= link_to reply.user.name, user_path(reply.user) %></li>
   <% end %>
   <br> <% if current_user == reply.user.id %>
-  <%= link_to "Edit", edit_reply_path(reply) %> &nbsp;&nbsp;&#124;&nbsp;&nbsp; <%= link_to "Delete", delete_reply_path(reply), method: :delete %><br><br>
+  <%= button_to "Edit", edit_reply_path(reply) %> 
+  <%= button_to "Delete", delete_reply_path(reply), method: :delete  %><br><br>
+
+
+
   <% end %>
 
 <% end %>

@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if set_user
+      redirect_to user_path(@user)
+    else
+      @user = User.new
+    end
   end
 
   def show

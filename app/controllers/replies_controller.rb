@@ -14,7 +14,7 @@ class RepliesController < ApplicationController
       @reply.add_to_event
       redirect_to need_path(@need)
     else
-      flash[:message] = @reply.errors.full_messages.join
+      flash[:notice] = @reply.errors.full_messages.join
       redirect_to new_reply_path(need_id: @need.id)
     end
   end
@@ -32,7 +32,7 @@ class RepliesController < ApplicationController
     if @reply.update(reply_params)
       redirect_to need_path(@reply.need)
     else
-      flash[:message] = @reply.errors.full_messages.join
+      flash[:notice] = @reply.errors.full_messages.join
       redirect_to edit_reply_path(@reply)
     end
   end
@@ -43,9 +43,9 @@ class RepliesController < ApplicationController
   def destroy
     @reply = Reply.find(params[:id])
     @need = @reply.need
-    flash[:message] = "Reply from #{@reply.user.name} was deleted!"
+    flash[:notice] = "Reply from #{@reply.user.name} was deleted!"
     @reply.destroy
-    redirect_to @need
+    redirect_to needs_path
   end
 
   private

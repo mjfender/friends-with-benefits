@@ -1,13 +1,13 @@
 class User < ApplicationRecord
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/default.png"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "user_default.png"
   validates_attachment :avatar,
   content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
   has_secure_password
-  has_many :needs
-  has_many :replies
-  has_many :event_users
+  has_many :needs, :dependent => :destroy
+  has_many :replies, :dependent => :destroy
+  has_many :event_users, :dependent => :destroy
   has_many :events, through: :event_users
-  has_many :memberships
+  has_many :memberships, :dependent => :destroy
   has_many :groups, through: :memberships
 
   validates :name, presence: true

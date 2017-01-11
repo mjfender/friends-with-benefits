@@ -31,3 +31,8 @@
     <%= link_to "#{event.need.headline}", need_event_path(event.need, event) %>
   <% end %>
 <% end %>
+
+<% if @user.id == current_user %>
+<br><br>
+<%= button_to "Delete your Account", @user, :method => :delete %></br>
+<% end %>

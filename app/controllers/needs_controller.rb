@@ -12,7 +12,7 @@ class NeedsController < ApplicationController
     if @new_need.save
       redirect_to @new_need
     else
-      flash[:message] = @new_need.errors.full_messages.join(" ")
+      flash[:notice] = @new_need.errors.full_messages.join(" ")
       redirect_to new_need_path
     end
   end
@@ -43,7 +43,7 @@ class NeedsController < ApplicationController
     if @need.update(need_params)
       redirect_to @need
     else
-      flash[:message] = @need.errors.full_messages.join(" ")
+      flash[:notice] = @need.errors.full_messages.join(" ")
       redirect_to edit_need_path(@need)
     end
 
@@ -51,7 +51,7 @@ class NeedsController < ApplicationController
 
   def destroy
     @need = Need.find(params[:id])
-    flash[:message] = "Your need was deleted!"
+    flash[:notice] = "Your need was deleted!"
     @need.destroy
     redirect_to needs_path
   end
