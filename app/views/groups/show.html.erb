@@ -7,20 +7,22 @@
 
 
 <%=  %>
-
-Admins: 
+<hr>
+<h3> Admins:</h3>
 <% @group.admins.each do |admin| %>
 <%= link_to admin.display_name(@user.id), admin %>
 <% end %>
 <hr>
 
 
-
 <%= render 'membership_list' %>
 <%= render 'join_form'        if @group.not_member?(@user) %>
 <%= render 'pending_requests' if @group.is_admin?(@user) %>
-
-
+<hr>
+<% binding.pry %>
+<% unless @group.needs.empty? || !@group.is_member?(@user) %>
+<h3>Group Needs</h3>
+<% end %>
 <% if @group.is_member?(@user) %>
   <%= render partial: 'shared/need_show',
       collection: @group.needs, 

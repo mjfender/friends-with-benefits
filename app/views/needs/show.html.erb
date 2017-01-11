@@ -9,7 +9,7 @@
   <% if need_belongs_to_user? %>
     <h2> You said...</h2>
   <% else %>
-    <h2> <%= @need.user.name %> says...</h2>
+    <h2> <%= @need.user.name %> said...</h2>
   <% end %>
   <p> <%= @need.description %></p>
 <% end %>
@@ -17,7 +17,6 @@
 
 
 <% if @need.expiration %>
-<!-- create method to show date in nicer format -->
 <h2> Expiring on:</h2>
 <%= need_expiration_formatted %><br><br>
 <% end %>
