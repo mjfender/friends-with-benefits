@@ -5,7 +5,8 @@ class User < ApplicationRecord
   has_secure_password
   has_many :needs
   has_many :replies
-  has_many :hookups
+  has_many :event_users
+  has_many :events, through: :event_users
   has_many :memberships
   has_many :groups, through: :memberships
 
@@ -19,6 +20,6 @@ class User < ApplicationRecord
 
   def display_name(current_user_id)
     id == current_user_id ? "You" : name
-  end  
+  end
 
 end
