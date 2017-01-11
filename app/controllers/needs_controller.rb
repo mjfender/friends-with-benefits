@@ -10,7 +10,6 @@ class NeedsController < ApplicationController
     @new_need = Need.new(need_params)
     @new_need.user = @user
     if @new_need.save
-      binding.pry
       redirect_to @new_need
     else
       flash[:message] = @need.errors.full_messages.join(" ")
