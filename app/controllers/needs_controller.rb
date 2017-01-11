@@ -12,7 +12,7 @@ class NeedsController < ApplicationController
     if @new_need.save
       redirect_to @new_need
     else
-      flash[:message] = @need.errors.full_messages.join(" ")
+      flash[:message] = @new_need.errors.full_messages.join(" ")
       redirect_to new_need_path
     end
   end
