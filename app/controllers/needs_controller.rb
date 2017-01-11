@@ -58,6 +58,6 @@ class NeedsController < ApplicationController
 
   private
   def need_params
-    params.require(:need).permit(:headline, :description, :expiration, :completed, :perk)
+    params.require(:need).permit(:headline, :description, :expiration, :completed, :perk, group_ids: [])
   end
 end

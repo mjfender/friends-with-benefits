@@ -7,8 +7,18 @@ Admins:
 <% end %>
 <hr>
 
+
+
 <%= render 'membership_list' %>
 
-
 <%= render 'join_form' if @group.not_member?(@user) %>
-<%= render 'member_needs' if @group.is_member?(@user) %>
+
+<% if @group.is_member?(@user) %>
+  <%= render partial: 'shared/need_show',
+      collection: @group.needs, 
+      as: :need  %>
+<% end %>
+
+
+
+ 
