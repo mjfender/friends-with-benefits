@@ -21,6 +21,9 @@ class RepliesController < ApplicationController
   def edit
     @reply = Reply.find(params[:id])
     @need = Need.find(@reply.need.id)
+    unless @reply.user_id == session[:user_id]
+      redirect_to need_path(@need)
+    end
   end
 
   def update
