@@ -11,6 +11,7 @@ class RepliesController < ApplicationController
     @reply = Reply.new(reply_params)
     @reply.user_id = @user.id
     if @reply.save
+      @reply.add_to_event
       redirect_to need_path(@need)
     else
       flash[:message] = @reply.errors.full_messages.join

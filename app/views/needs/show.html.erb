@@ -47,6 +47,19 @@
 <% end %>
 </ul>
 
+<h2> Event Details </h2>
+
+<% unless @need.events.blank? %>
+  <p><%= link_to "Check out the event at #{@need.events.first.time_formatted}", need_event_path(@need, @need.events.first) %></p>
+<% end %>
+
+<% if @user == @need.user && @need.events.blank? %>
+  <p><%= link_to "Ready to create an event?", new_need_event_path(@need) %></p>
+<% elsif @user != @need.user && @need.events.blank? %>
+  <p> There are no events created yet! </p>
+<% end %>
+
+
 
 <!-- Total number of replies, deadline -->
 <!-- Add list of replies with their users-->
