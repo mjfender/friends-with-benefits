@@ -13,7 +13,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = User.new(user_params)
+    @user.groups << Group.find(1)
+    @user.save 
     session[:user_id] = @user.id
     redirect_to user_path(@user)
   end
