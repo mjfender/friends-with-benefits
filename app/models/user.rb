@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :hookups
   has_many :memberships
   has_many :groups, through: :memberships
-  
+
   validates :name, presence: true
   validates :email, presence: true
 
