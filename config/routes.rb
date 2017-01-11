@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :needs
 
   resources :groups do 
-    resources :memberships
+    resources :memberships, except: ["show"]
   end
 
   root 'users#new'
@@ -33,6 +33,19 @@ Rails.application.routes.draw do
   patch '/replies/:id', to: 'replies#update'
   delete '/replies/:id', to: 'replies#destroy', as: 'delete_reply'
   get '/replies/:id', to: 'replies#show', as: 'reply'
+
+
+  get '/groups/:group_id/memberships/:user_id/admin', to: 'memberships#request_admin', as: 'admin_request'
+  
+  get '/groups/:group_id/memberships/:user_id/deny_admin', to: 'memberships#deny_admin', as: 'deny_admin'
+
+  get '/groups/:group_id/memberships/:user_id/admin_toggle', to: 'memberships#toggle_admin', as: 'toggle_admin'
+
+  get '/groups/:group_id/memberships/request-invite', to: 'memberships#request_invite', as: 'request_group_membership'
+
+  get '/groups/:group_id/memberships/:user_id/request-invite/approve', to: 'memberships#approve_membership_request', as: 'approve_group_membership'
+
+  get '/groups/:group_id/memberships/:user_id/request-invite/deny', to: 'memberships#deny_membership_request', as: 'deny_group_membership'
 
 
 end

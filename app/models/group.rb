@@ -4,12 +4,16 @@ class Group < ApplicationRecord
   has_many :memberships
   has_many :users, through: :memberships
 
-  has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "default.png"
   validates_attachment :photo,
   content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
   
   def is_open?
     !!open
+  end
+
+  def closed?
+    !is_open?
   end
 
   def set_admin(user)
@@ -33,7 +37,11 @@ class Group < ApplicationRecord
   end
 
   def members
-    self.users
+    if closed?
+      User.joins(:memberships).where( memberships: {group_id: id, approved: true })
+    else
+      self.users
+    end
   end
 
   def is_member?(user)
@@ -51,6 +59,20 @@ class Group < ApplicationRecord
   def admins
     admins_membership = Membership.where(group_id: id, admin: true)
     admins_membership.collect { |membership| membership.user}
+  end
+
+  def is_admin?(current_user)
+    admins.include?(current_user)
+  end
+
+  def pending_admins
+    memberships = Membership.where(group_id: id).where.not(request_admin: nil)
+    memberships.collect { |membership | membership.user }
+  end
+
+  def pending_memberships
+    memberships = Membership.where(group_id: id, approved: nil).where.not(admin: true)
+    memberships.collect { | membership | membership.user }
   end
 
 end
