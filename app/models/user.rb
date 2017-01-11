@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/default.png"
   validates_attachment :avatar,
   content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
   has_secure_password
@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true
 
-  def join(new_group)
+  def join_group(new_group)
     groups << new_group
     save
   end

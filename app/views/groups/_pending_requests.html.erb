@@ -1,0 +1,28 @@
+
+
+  <% unless @group.pending_admins.empty? %>
+  <h2> Admin Requests </h2>
+  <% @group.pending_admins.each do |user|  %>
+  <div>
+    <%= user.name %> wants to be an admin
+    <%= link_to 'Approve Request', toggle_admin_path(@group, user) %>
+    <%= link_to 'Deny Request', deny_admin_path(@group, user) %>
+  </div>
+  <% end %>
+
+  <% end %>
+
+  <% if @group.closed? && !@group.pending_memberships.empty? %>
+
+  <h2> Memberships Requests </h2>
+    <% @group.pending_memberships.each do |user| %>
+      <div>
+      <%= user.name %> wants to be a member
+      <%= link_to 'Approve Request', approve_group_membership_path(@group, user) %>
+      <%= link_to 'Deny Request', deny_group_membership_path(@group, user) %>
+    </div>
+    <% end %>
+  <% end %>
+
+
+

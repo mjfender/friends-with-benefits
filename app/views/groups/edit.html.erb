@@ -1,0 +1,7 @@
+<% if @group.is_admin?(@user) %>
+<%= render 'form' %>
+<% else %>
+<p> You must be an admin to edit this group. </p>
+<%= link_to 'Request Admin Status', admin_request_path(@group, @user) %>
+<%= render 'group_details' %>
+<% end %>

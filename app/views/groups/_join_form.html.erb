@@ -1,1 +1,6 @@
-<%= link_to 'Join Group', new_group_membership_path(@group) %>
+<% if @group.is_open? %>
+  <%= link_to 'Join Group', new_group_membership_path(@group) %>
+<% else %>
+  <h3> This Group Is Closed. </h3>
+  <%= link_to "Request Membership", request_group_membership_path(@group) %>
+<% end %>
