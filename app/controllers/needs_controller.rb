@@ -10,6 +10,7 @@ class NeedsController < ApplicationController
     @new_need = Need.new(need_params)
     @new_need.user = @user
     if @new_need.save
+      binding.pry
       redirect_to @new_need
     else
       flash[:message] = @need.errors.full_messages.join(" ")
@@ -55,6 +56,6 @@ class NeedsController < ApplicationController
 
   private
   def need_params
-    params.require(:need).permit(:headline, :description, :expiration, :completed, :perk)
+    params.require(:need).permit(:headline, :description, :expiration, :completed, :perk, group_ids: [])
   end
 end
