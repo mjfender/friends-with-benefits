@@ -5,7 +5,7 @@ def birth_humans
   human.password = 'password'
   human.bio = FFaker::HipsterIpsum.paragraph
   human.zipcode = FFaker::AddressUS.zip_code
-  human.join( random_pluck( Group ) )
+  human.join_group( random_pluck( Group ) )
   human.save
 end 
 
