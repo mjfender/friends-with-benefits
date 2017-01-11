@@ -1,8 +1,9 @@
-<h1><%= "Welcome back #{@user.name}!" %></h1>
 
-<%= link_to "Edit your Account", edit_user_path %></br></br>
-<%= button_to "Delete your Account", @user, :method => :delete %></br>
-<%= button_to "Log Out", logout_path, :method => :get %></br>
+<% if @user.id == current_user %>
+  <%= render 'ownershow' %>
+<% else %>
+  <%= render 'friendshow' %>
+<% end %>
 
 
 <h2><%= @user.name %></h2>
@@ -10,8 +11,23 @@
 
 <h3><%= @user.bio %></h3>
 
-<h2>Proud member of:</h2>
-<% @user.groups.each do |group| %>
-<%= link_to group.title, group %>
+<% unless @user.groups.blank? %>
+  <h2>Proud member of:</h2>
+  <% @user.groups.each do |group| %>
+  <%= link_to group.title, group %>
+  <% end %>
 <% end %>
 
+<% unless @user.needs.blank? %>
+  <h2>User Needs</h2>
+  <% @user.needs.each do |need| %>
+    <%= link_to "#{need.headline}", need_path(need) %><br>
+  <% end %>
+<% end %>
+
+<% if @user.id == current_user && !@user.events.blank? %>
+  <h2> My Events </h2>
+  <% @user.events.each do |event| %>
+    <%= link_to "#{event.need.headline}", need_event_path(event.need, event) %>
+  <% end %>
+<% end %>

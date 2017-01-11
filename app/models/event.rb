@@ -8,7 +8,9 @@ class Event < ApplicationRecord
     if self.need.replies
       #iterate through need's replies and add each reply's user to EventUsers
       self.need.replies.each do |reply|
-        EventUser.create(user_id: reply.user.id, event_id: self.id)
+        if reply.yes
+          EventUser.create(user_id: reply.user.id, event_id: self.id)
+        end
       end
 
     end
