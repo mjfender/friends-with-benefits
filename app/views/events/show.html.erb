@@ -1,0 +1,17 @@
+<h1> Event Page </h1>
+
+<h3>Description:</h3>
+<%= @event.description %>
+<h3>Location:</h3>
+<%= @event.location %>
+<h3>Time:</h3>
+<%= @event.time_formatted %>
+<h3>Host:</h3>
+<%= link_to @event.need.user.name, user_path(@event.need.user)  %>
+<h3>Participant(s):</h3>
+<% @event.event_users.each do |event_user| %>
+  <% unless event_user.user_id == @event.need.user.id %>
+  <%= link_to event_user.user.name, user_path(event_user) %><br>
+  <% end %>
+<% end %>
+
