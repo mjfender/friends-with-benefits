@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Group, type: :model do
-  
+
   it 'allows users to join'
   it 'allows users to create new groups'
   it 'allows members to leave'
