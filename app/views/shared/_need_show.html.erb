@@ -1,3 +1,9 @@
 <div>
-<%= need.user.name %> says: <%= need.headline %>
+<%= link_to need.headline, need_path(need) %><br>
+&mdash; <%= link_to need.user.name, user_path(need.user) %>
+<%= form_for(new_reply_instance) do |f| %>
+      <%= f.hidden_field :need_id, :value => need.id %>
+      <%= f.hidden_field :yes, :value => true %>
+      <%= f.submit "Yes, I'll help!"  %><br><br>
+      <% end %>
 </div>
