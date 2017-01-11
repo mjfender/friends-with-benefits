@@ -13,8 +13,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_user
-    # @user = User.find(1)
-    @user = User.find(session[:user_id])
+    if logged_in?
+      @user = User.find(session[:user_id])
+    else
+      false
+    end
   end
 
   def authorize_user

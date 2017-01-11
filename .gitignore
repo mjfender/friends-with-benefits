@@ -17,5 +17,6 @@
 .byebug_history
 
 Gemfile.lock
+/app/assets/*
 
 /public/users/avatars/*

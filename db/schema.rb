@@ -10,10 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110164859) do
+ActiveRecord::Schema.define(version: 20170110211129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "group_needs", force: :cascade do |t|
+    t.integer  "need_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_needs_on_group_id", using: :btree
+    t.index ["need_id"], name: "index_group_needs_on_need_id", using: :btree
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.boolean  "open",               default: true
+    t.string   "title"
+    t.text     "description"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "location"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.boolean  "admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_memberships_on_group_id", using: :btree
+    t.index ["user_id"], name: "index_memberships_on_user_id", using: :btree
+  end
 
   create_table "needs", force: :cascade do |t|
     t.integer  "user_id"
@@ -53,4 +85,8 @@ ActiveRecord::Schema.define(version: 20170110164859) do
     t.datetime "avatar_updated_at"
   end
 
+  add_foreign_key "group_needs", "groups"
+  add_foreign_key "group_needs", "needs"
+  add_foreign_key "memberships", "groups"
+  add_foreign_key "memberships", "users"
 end

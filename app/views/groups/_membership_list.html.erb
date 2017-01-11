@@ -1,0 +1,7 @@
+<% if @group.is_member?(@user) %>
+  <% @group.members.each do |member| %>
+   <%= link_to member.display_name(@user.id), member %>
+ <% end %>
+<% else %>
+  <%= @group.member_count %> happy members!
+<% end %>
