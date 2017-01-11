@@ -71,7 +71,7 @@ class Group < ApplicationRecord
   end
 
   def pending_memberships
-    memberships = Membership.where(group_id: id, approved: nil).where.not(admin: true)
+    memberships = Membership.where(group_id: id, approved: nil, admin: nil)
     memberships.collect { | membership | membership.user }
   end
 
