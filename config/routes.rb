@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :needs
+  resources :needs do
+    resources :events
+  end
+  # params[:need_id], params[:id] for event.id
 
-  resources :groups do 
+  resources :groups do
     resources :memberships
   end
 
