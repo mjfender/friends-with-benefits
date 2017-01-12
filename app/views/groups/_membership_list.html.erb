@@ -1,7 +1,10 @@
-<% if @group.is_member?(@user) %>
+<% if @group.member?(@user) %>
   <h3> Members:</h3><% @group.members.each do |member| %>
    <%= link_to member.display_name(@user.id), member %>
- <% end %>
+   <% if @group.admin?(@user) && @group.closed? %>
+   <%= link_to 'x', revoke_membership_path(@group, member) %>
+   <% end %>
+   <% end %>
 <% else %>
 <h3> Members: </h3>
   <%= @group.member_count %> happy members!
