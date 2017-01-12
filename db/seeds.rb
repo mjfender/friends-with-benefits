@@ -3,6 +3,8 @@ def birth_humans
   human.name = FFaker::Name.name
   human.email = FFaker::Internet.email
   human.password = 'password'
+  human.groups << Group.find(1)
+  human.default_group = 1
   human.bio = FFaker::HipsterIpsum.paragraph
   human.zipcode = FFaker::AddressUS.zip_code
   human.join_group( random_pluck( Group ) )

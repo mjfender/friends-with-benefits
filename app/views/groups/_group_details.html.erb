@@ -1,5 +1,15 @@
+<% if @group.default_group?(@user) %>
+<div class="badge">Default Group </div>
+<% elsif @group.is_member?(@user) %>
+<%= link_to "Make Default Group", set_default_group_path(@group) %>
+<% end %>
+
+
+
+
 <h1> <%= @group.title %> </h1>
 <h2> <%= @group.description %> </h2>
+
 <div class="tc pa4">
 <%= image_tag( @group.photo.url(:thumb), 
                 class: 'br-100 pa1 ba b--black-10 h3 w3') %>
