@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :need_belongs_to_user?, :authorize_user, :logged_in?, :need_expiration_formatted, :new_reply_instance, :current_user
+  helper_method :need_belongs_to_user?, :authorize_user, :logged_in?, :need_expiration_formatted, :new_reply_instance, :current_user, :default_button_class
 
 
   def logged_in?
@@ -36,6 +36,12 @@ class ApplicationController < ActionController::Base
 
   def new_reply_instance
     Reply.new
+  end
+
+  private
+
+  def default_button_class
+    "waves-effect waves-light btn red accent-4"
   end
 
 end

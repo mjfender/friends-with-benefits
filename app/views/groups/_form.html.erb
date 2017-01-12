@@ -1,11 +1,15 @@
 <%= form_for @group do |f| %>
-<%= f.label :title %>
-<%= f.text_field :title %>
-<%= f.label :description %>
-<%= f.text_area :description %>
-<%= f.label :photo %>
-<%= f.file_field :photo %>
-<%= f.label :open %>
-<%= f.check_box :open %>
-<%= f.submit %>
-<% end %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.label :photo %>
+  <%= f.file_field :photo %>
+  <%= f.label :open %>
+  <%= f.check_box :open %>
+
+  <%= f.submit "Create a New Group", class: "#{default_button_class}" %>
+
+
+<% end %></br>

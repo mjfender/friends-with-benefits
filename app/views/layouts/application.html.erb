@@ -2,13 +2,35 @@
 <html>
   <head>
     <title>GitErDone</title>
-    <%= stylesheet_link_tag "tachyons.min" %>
+    <%= stylesheet_link_tag "application" %>
 <!--     <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %> -->
-    
+
   </head>
 
   <body class="avenir pa5 lh-copy">
-    <%= yield %>
+
+    <nav>
+      <div class="nav-wrapper red accent-4">
+        <a href="/" class="brand-logo">Home</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/login">Login</a></li>
+          <% if logged_in? %>
+            <li><%= link_to "Your Profile", @user %></li>
+            <li><%= link_to "Logout", logout_path %></li>
+          <% end  %>
+          <li><a href="/needs">I want to help</a></li>
+          <li><a href="/needs/new">I need help</a></li>
+          <li><a href="/groups">Groups</a></li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
   </body>
 </html>

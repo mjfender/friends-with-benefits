@@ -34,5 +34,5 @@
 
 <% if @user.id == current_user %>
 <br><br>
-<%= button_to "Delete your Account", @user, :method => :delete %></br>
+<%= button_to "Delete your Account", @user, :method => :delete, class: "#{default_button_class}" %></br></br></br>
 <% end %>

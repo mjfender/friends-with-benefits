@@ -6,10 +6,10 @@
   <%= f.text_area :description %><br><br>
 
   <%= f.label :expiration, "Expiration Date (Optional)" %><br />
-  <%= f.date_select :expiration, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year, end_year: Date.today.year + 3} %><br><br>
+  <%= f.datetime_field :expiration, {class: 'datepicker'} %>
 
   <%= f.collection_check_boxes(:group_ids, @user.groups, :id, :title) %>
 
+  <%= f.submit "Your Need", class: "#{default_button_class}" %>
 
-  <%= f.submit %>
-<% end %>
+<% end %></br></br>
