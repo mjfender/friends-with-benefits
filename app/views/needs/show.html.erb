@@ -41,9 +41,9 @@
   <li>   <strong>Yes, I want to help!</strong> &mdash; <%= link_to reply.user.name, user_path(reply.user) %></li>
   <% end %>
   <br> <% if current_user == reply.user.id %>
-  <%= button_to "Edit", edit_reply_path(reply), class: "#{default_button_class}" %><br>
+  <%= button_to "Edit", edit_reply_path(reply), class: "#{small_button_class}" %><br>
 
-  <%= button_to "Delete", delete_reply_path(reply), method: :delete, class: "#{default_button_class}"  %><br><br>
+  <%= button_to "Delete", delete_reply_path(reply), method: :delete, class: "#{small_button_class}"  %><br><br>
 
 
 
