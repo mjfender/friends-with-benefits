@@ -62,5 +62,7 @@ Rails.application.routes.draw do
 
   get '/groups/:group_id/memberships/:user_id/request-invite/deny', to: 'memberships#deny_membership_request', as: 'deny_group_membership'
 
+  match '/groups/:group_id/memberships/approve-all/', to: 'memberships#approve_all_memberships', as: 'approve_all_group_membership', via: [:get, :post]
+
 
 end

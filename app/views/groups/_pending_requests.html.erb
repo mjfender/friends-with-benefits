@@ -1,5 +1,3 @@
-
-
   <% unless @group.pending_admins.empty? %>
   <h2> Admin Requests </h2>
   <% @group.pending_admins.each do |user|  %>
@@ -15,6 +13,7 @@
   <% if @group.closed? && !@group.pending_memberships.empty? %>
 
   <h2> Memberships Requests </h2>
+  <%= link_to 'Approve All', approve_all_group_membership_path(@group) %>
     <% @group.pending_memberships.each do |user| %>
       <div>
       <%= user.name %> wants to be a member

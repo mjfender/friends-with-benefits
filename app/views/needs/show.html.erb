@@ -1,6 +1,6 @@
 <p> <%= flash[:notice] %> </p>
 
-<p>Posted in: <%= render partial: 'shared/group_title', collection: @need.groups, as: :group %>
+<p>Posted in: <%= render partial: 'shared/group_title', collection: @need.groups, as: :group %></p>
 
 <h1> <%= @need.headline %> </h1>
 <h3> by: <%= link_to @need.user.name, user_path(@need.user) %><%= " (That's you!)" if need_belongs_to_user? %></h3>
@@ -8,11 +8,7 @@
 <%= button_to "Edit Your Post", edit_need_path(@need), action: "get", method: "get" if need_belongs_to_user? %>
 
 <% if @need.description %>
-  <% if need_belongs_to_user? %>
-    <h2> You said...</h2>
-  <% else %>
-    <h2> <%= @need.user.name %> said...</h2>
-  <% end %>
+  <h2><%= @need.user.display_name(@user) %> said...</h2>
   <p> <%= @need.description %></p>
 <% end %>
 
