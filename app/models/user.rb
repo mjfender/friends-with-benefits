@@ -18,8 +18,12 @@ class User < ApplicationRecord
     save
   end
 
-  def display_name(current_user_id)
-    id == current_user_id ? "You" : name
+  def display_name(current_user)
+    if current_user.is_a? Integer
+      id == current_user ? "You" : name
+    else
+      self == current_user ? "You" : name
+    end
   end
 
 end

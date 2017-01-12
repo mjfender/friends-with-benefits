@@ -6,6 +6,8 @@ Rails.application.routes.draw do
    post '/needs/:need_id/events/:id/edit', to: 'events#edit'
   # params[:need_id], params[:id] for event.id
 
+  match '/needs/:need_id/remove-from-group/:group_id', to: 'needs#remove_from_group', as: "remove_from_group",  via: [:get, :post]
+
 
   resources :groups do
     resources :memberships, except: ["show"]
@@ -43,6 +45,11 @@ Rails.application.routes.draw do
   get '/replies/:id', to: 'replies#show', as: 'reply'
 
 
+  # Members. Maybe super ugly & bad.
+
+  get '/groups/:group_id/memberships/:user_id/revoke', to: 'memberships#revoke', as: 'revoke_membership'
+
+
   get '/groups/:group_id/memberships/:user_id/admin', to: 'memberships#request_admin', as: 'admin_request'
 
   get '/groups/:group_id/memberships/:user_id/deny_admin', to: 'memberships#deny_admin', as: 'deny_admin'
@@ -54,6 +61,8 @@ Rails.application.routes.draw do
   get '/groups/:group_id/memberships/:user_id/request-invite/approve', to: 'memberships#approve_membership_request', as: 'approve_group_membership'
 
   get '/groups/:group_id/memberships/:user_id/request-invite/deny', to: 'memberships#deny_membership_request', as: 'deny_group_membership'
+
+  match '/groups/:group_id/memberships/approve-all/', to: 'memberships#approve_all_memberships', as: 'approve_all_group_membership', via: [:get, :post]
 
 
 end

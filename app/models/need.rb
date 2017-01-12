@@ -15,5 +15,13 @@ class Need < ApplicationRecord
       :others_needs => needs[1]}
   end
 
+  def owner?(current_user)
+    user == current_user
+  end
+
+  def admin?(opt)
+    opt[:controller] == "groups" && Group.find(opt[:id]).admin?(opt[:user])
+  end
+
 
 end
