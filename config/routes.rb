@@ -56,4 +56,6 @@ Rails.application.routes.draw do
   get '/groups/:group_id/memberships/:user_id/request-invite/deny', to: 'memberships#deny_membership_request', as: 'deny_group_membership'
 
 
+  get '/dashboards/index', to: 'dashboards#index', as: 'dashboard'
+
 end

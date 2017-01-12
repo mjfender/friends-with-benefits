@@ -1,0 +1,21 @@
+<h1>The Dashboard!</h1>
+<hr>
+<h2>Upcoming Events</h2>
+
+<p>There are <strong><%= @upcoming_events.count %></strong> events taking place this week.</p><br>
+
+<hr>
+
+<h2>Created Last Week</h2>
+
+<p>Our users created:</p>
+<ul>
+  <li><strong><%= @needs_created_last_week.count %></strong> needs last week</li>
+  <li><strong><%= @replies_created_last_week.count %></strong> replies last week</li>
+</ul>
+
+<hr>
+
+<h2>Group Stats (More to Come)</h2>
+
+<p><strong><%= @group_by_memberships.first.title %></strong> currently has the most members. </p>
