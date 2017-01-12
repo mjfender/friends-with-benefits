@@ -14,14 +14,19 @@
       <div class="nav-wrapper red accent-4">
         <a href="/" class="brand-logo">Home</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/login">Login</a></li>
+
+          <% if !logged_in? %>
+            <li><a href="/login">Login</a></li>
+          <% end  %>
+
           <% if logged_in? %>
             <li><%= link_to "Your Profile", @user %></li>
+            <li><a href="/needs">I want to help</a></li>
+            <li><a href="/needs/new">I need help</a></li>
+            <li><a href="/groups">Groups</a></li>
             <li><%= link_to "Logout", logout_path %></li>
           <% end  %>
-          <li><a href="/needs">I want to help</a></li>
-          <li><a href="/needs/new">I need help</a></li>
-          <li><a href="/groups">Groups</a></li>
+
         </ul>
       </div>
     </nav>
