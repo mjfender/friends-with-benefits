@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112165440) do
+ActiveRecord::Schema.define(version: 20170112214854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20170112165440) do
     t.string   "location"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.integer  "memberships_count"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -92,13 +93,14 @@ ActiveRecord::Schema.define(version: 20170112165440) do
     t.text     "bio"
     t.string   "photo"
     t.string   "zipcode"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "default_group",       default: 1
+    t.string   "admin",               default: "f"
   end
 
   add_foreign_key "group_needs", "groups"
