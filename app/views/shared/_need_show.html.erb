@@ -4,20 +4,17 @@
 <% end %>
 
 <%= link_to need.headline, need_path(need) %><br>
-&mdash; <%= link_to need.user.display_name(@user), user_path(need.user) %>
 
+&mdash; <%= link_to need.user.display_name(@user), user_path(need.user) %>
 <% if need.owner?(@user) %>
   <%= link_to 'Edit', edit_need_path(need) %>
 <% else %>
 
-  <%= form_for(new_reply_instance) do |f| %>
-        <%= f.hidden_field :need_id, :value => need.id %>
-        <%= f.hidden_field :yes, :value => true %>
-        <%= f.submit "Yes, I'll help!"  %><br><br>
-  <% end %>
-<% end %>
+<%= form_for(new_reply_instance) do |f| %>
+      <%= f.hidden_field :need_id, :value => need.id %>
+      <%= f.hidden_field :yes, :value => true %>
 
-
-
-
+      <%= f.submit "Yes, I'll help!", class: "#{default_button_class}"  %><br><br>
+      <% end %>
 </div>
+

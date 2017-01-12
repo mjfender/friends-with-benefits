@@ -24,7 +24,7 @@
 <br>
 
 <% if current_user == @event.need.user.id %>
-  <%= button_to "Edit Your Event", edit_need_event_path(@need, id: @event.id) %>
-  <%= button_to "Delete Event", { action: "destroy", id: @event.id, need_id: @need.id}, method: :delete%>
+  <%= button_to "Edit Your Event", edit_need_event_path(@need, id: @event.id), class: "#{default_button_class}" %></br>
+  <%= button_to "Delete Event", { action: "destroy", id: @event.id, need_id: @need.id}, method: :delete, class: "#{default_button_class}" %></br></br>
 
 <% end %>
