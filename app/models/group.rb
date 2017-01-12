@@ -56,6 +56,10 @@ class Group < ApplicationRecord
     self.users.count
   end
 
+  def default_group?(user)
+    id == user.default_group
+  end
+
   def admins
     admins_membership = Membership.where(group_id: id, admin: true)
     admins_membership.collect { |membership| membership.user}

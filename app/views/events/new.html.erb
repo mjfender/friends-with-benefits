@@ -2,5 +2,6 @@
 <h3> <%= link_to @need.user.name, user_path(@need.user) %> </h3>
 <p> <%= @need.description %> </p>
 <hr> -->
+<p><%= flash[:notice] %></p>
 <h1> Create Your Event </h1>
 <%= render 'form' %>
