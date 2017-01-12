@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # params[:need_id], params[:id] for event.id
 
 
-  resources :groups do 
+  resources :groups do
     resources :memberships, except: ["show"]
   end
 
@@ -34,13 +34,14 @@ Rails.application.routes.draw do
   get '/replies/new', to: 'replies#new', as: 'new_reply'
   post '/replies', to: 'replies#create'
   get '/replies/:id/edit', to: 'replies#edit', as: 'edit_reply'
+  post '/replies/:id/edit', to: 'replies#edit'
   patch '/replies/:id', to: 'replies#update'
   delete '/replies/:id', to: 'replies#destroy', as: 'delete_reply'
   get '/replies/:id', to: 'replies#show', as: 'reply'
 
 
   get '/groups/:group_id/memberships/:user_id/admin', to: 'memberships#request_admin', as: 'admin_request'
-  
+
   get '/groups/:group_id/memberships/:user_id/deny_admin', to: 'memberships#deny_admin', as: 'deny_admin'
 
   get '/groups/:group_id/memberships/:user_id/admin_toggle', to: 'memberships#toggle_admin', as: 'toggle_admin'
