@@ -20,12 +20,12 @@
 
 <%= render 'membership_list' %>
 <%= render 'join_form'        if @group.not_member?(@user) %>
-<%= render 'pending_requests' if @group.is_admin?(@user) %>
+<%= render 'pending_requests' if @group.admin?(@user) %>
 <hr>
-<% unless @group.needs.empty? || !@group.is_member?(@user) %>
+<% unless @group.needs.empty? || !@group.member?(@user) %>
 <h3>Group Needs</h3>
 <% end %>
-<% if @group.is_member?(@user) %>
+<% if @group.member?(@user) %>
   <%= render partial: 'shared/need_show',
       collection: @group.needs,
       as: :need  %>

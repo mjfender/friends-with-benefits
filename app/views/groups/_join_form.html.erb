@@ -1,4 +1,4 @@
-<% if @group.is_open? %>
+<% if @group.open? %>
   <%= link_to 'Join Group', new_group_membership_path(@group) %>
 <% else %>
   <h3> This Group Is Closed. </h3>

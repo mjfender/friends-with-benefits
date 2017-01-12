@@ -6,6 +6,8 @@ Rails.application.routes.draw do
    post '/needs/:need_id/events/:id/edit', to: 'events#edit'
   # params[:need_id], params[:id] for event.id
 
+  match '/needs/:need_id/remove-from-group/:group_id', to: 'needs#remove_from_group', as: "remove_from_group",  via: [:get, :post]
+
 
   resources :groups do
     resources :memberships, except: ["show"]
@@ -41,6 +43,11 @@ Rails.application.routes.draw do
   patch '/replies/:id', to: 'replies#update'
   delete '/replies/:id', to: 'replies#destroy', as: 'delete_reply'
   get '/replies/:id', to: 'replies#show', as: 'reply'
+
+
+  # Members. Maybe super ugly & bad.
+
+  get '/groups/:group_id/memberships/:user_id/revoke', to: 'memberships#revoke', as: 'revoke_membership'
 
 
   get '/groups/:group_id/memberships/:user_id/admin', to: 'memberships#request_admin', as: 'admin_request'

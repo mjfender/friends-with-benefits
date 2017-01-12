@@ -19,33 +19,40 @@ class MembershipsController < ApplicationController
   end
 
   def deny_admin
+
     @group = Group.find(params[:group_id])
-    if @group.is_admin?(@user)
+    if @group.admin?(@user)
       @membership = Membership.find_by(group_id: params[:group_id], user_id: params[:user_id])
       @membership.request_admin = nil
       @membership.save
     end
     redirect_to @membership.group
+
   end
 
   def toggle_admin
+
     @membership = Membership.find_by(group_id: params[:group_id], user_id: params[:user_id])
     @membership.request_admin = nil
     @membership.toggle(:admin)
     @membership.save
     redirect_to @membership.group
+
   end
 
   def request_invite
+
     @membership = Membership.new
     @membership.group = Group.find(params[:group_id])
     @membership.user = @user
     @membership.request_invite = Time.now
     @membership.save
     redirect_to @membership.group
+
   end
 
   def approve_membership_request
+
     @group = Group.find(params[:group_id])
     if @group.is_admin?(@user)
       @membership = Membership.find_by(group_id: params[:group_id], user_id: params[:user_id])
@@ -53,15 +60,31 @@ class MembershipsController < ApplicationController
       @membership.save
     end
     redirect_to @membership.group
+
   end
 
   def deny_membership_request
+
     @group = Group.find(params[:group_id])
-    if @group.is_admin?(@user)
+    if @group.admin?(@user)
       @membership = Membership.find_by(group_id: params[:group_id], user_id: params[:user_id])
       @membership.approved = false
       @membership.save
     end
     redirect_to @membership.group
+
   end
+
+  def revoke
+    
+    @group = Group.find(params[:group_id])
+    if @group.admin?(@user)
+      @membership = Membership.find_by(group_id: params[:group_id], user_id: params[:user_id])
+      @membership.destroy
+    end
+    flash[:notice] = "You have removed #{User.find(params[:user_id]).name} from your group"
+    redirect_to @membership.group
+
+  end
+
 end

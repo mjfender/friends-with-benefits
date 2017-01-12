@@ -8,16 +8,16 @@ class Group < ApplicationRecord
   validates_attachment :photo,
   content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
   
-  def is_open?
+  def open?
     !!open
   end
 
   def closed?
-    !is_open?
+    !open?
   end
 
   def set_admin(user)
-    if is_member?( user )
+    if member?( user )
       membership = Membership.where(user_id: user.id, group_id: id ).first
       membership.admin = true
       membership.save
@@ -44,7 +44,7 @@ class Group < ApplicationRecord
     end
   end
 
-  def is_member?(user)
+  def member?(user)
     self.users.include?(user)
   end
 
@@ -65,7 +65,7 @@ class Group < ApplicationRecord
     admins_membership.collect { |membership| membership.user}
   end
 
-  def is_admin?(current_user)
+  def admin?(current_user)
     admins.include?(current_user)
   end
 

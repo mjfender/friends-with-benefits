@@ -1,5 +1,7 @@
 <p> <%= flash[:notice] %> </p>
 
+<p>Posted in: <%= render partial: 'shared/group_title', collection: @need.groups, as: :group %>
+
 <h1> <%= @need.headline %> </h1>
 <h3> by: <%= link_to @need.user.name, user_path(@need.user) %><%= " (That's you!)" if need_belongs_to_user? %></h3>
 

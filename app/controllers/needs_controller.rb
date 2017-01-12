@@ -56,6 +56,16 @@ class NeedsController < ApplicationController
     redirect_to needs_path
   end
 
+  def remove_from_group
+    @group = Group.find(params[:group_id])
+    @need = Need.find(params[:need_id])
+    if @user == @group.admin?(@user) || @user = @need.user
+      @need.groups.delete(params[:group_id])
+      @need.save
+    end
+    redirect_to @group
+  end
+
   private
   def need_params
     params.require(:need).permit(:headline, :description, :expiration, :completed, :perk, group_ids: [])

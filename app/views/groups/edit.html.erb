@@ -1,4 +1,4 @@
-<% if @group.is_admin?(@user) %>
+<% if @group.admin?(@user) %>
 <%= render 'form' %>
 <% else %>
 <p> You must be an admin to edit this group. </p>
