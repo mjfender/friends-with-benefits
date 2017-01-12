@@ -18,9 +18,9 @@
     <%= form_for(new_reply_instance) do |f| %>
       <%= f.hidden_field :need_id, :value => need.id %>
       <%= f.hidden_field :yes, :value => true %>
-      <%= f.submit "Yes, I'll help!"  %>
+      <%= f.submit "Yes, I'll help!", class: "#{default_button_class}"  %>
       <% end %><br>
   <% end %>
-      
+
 
 <% end %>

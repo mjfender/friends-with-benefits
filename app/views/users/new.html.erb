@@ -4,7 +4,7 @@
 
 <br></br>
 
-<h2> Sign Up Below </h2>
+<h2> Sign Up Below </h2></br>
 
 <%= form_for @user do |f| %>
 
@@ -17,12 +17,12 @@
   <%= f.label "Confirm Password: " %>
   <%= f.password_field :confirm_password %></br></br>
   <%= f.label "Bio: " %></br>
-  <%= f.text_area :bio %></br></br>
+  <%= f.text_area :bio %></br></br></br>
   <%= f.label "Photo: " %>
-  <%= f.file_field :avatar %></br></br>
+  <%= f.file_field :avatar %></br></br></br>
   <%= f.label "Zipcode: " %>
   <%= f.text_field :zipcode %></br></br>
 
-  <%= f.submit "Sign Up" %>
+<%= f.submit "Sign Up", class: "#{default_button_class}" %>
 
-<% end %>
+<% end %></br></br></br>
