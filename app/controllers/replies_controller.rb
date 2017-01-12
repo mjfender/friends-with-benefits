@@ -43,7 +43,11 @@ class RepliesController < ApplicationController
   def destroy
     @reply = Reply.find(params[:id])
     @need = @reply.need
-    flash[:notice] = "Reply from #{@reply.user.name} was deleted!"
+    if @reply.user_id == session[:user_id]
+      flash[:notice] = "Your reply was deleted!"
+    else
+      flash[:notice] = "Reply from #{@reply.user.name} was deleted!"
+    end
     @reply.destroy
     redirect_to needs_path
   end
