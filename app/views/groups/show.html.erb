@@ -19,7 +19,6 @@
 <%= render 'join_form'        if @group.not_member?(@user) %>
 <%= render 'pending_requests' if @group.is_admin?(@user) %>
 <hr>
-<% binding.pry %>
 <% unless @group.needs.empty? || !@group.is_member?(@user) %>
 <h3>Group Needs</h3>
 <% end %>
