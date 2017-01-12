@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.groups << Group.find(1)
+    @user.default_group = 1
     @user.save 
     session[:user_id] = @user.id
     redirect_to user_path(@user)
@@ -40,6 +41,15 @@ class UsersController < ApplicationController
     session[:user_id] = nil
     flash[:notice] = "Your account has successfully been deleted. Thanks for coming by!"
     redirect_to root_path
+  end
+
+  def set_default_group
+    set_user
+    @user.default_group = params[:group_id]
+    @user.save
+    @group = Group.find(params[:group_id])
+    flash[:notice] = "#{@group.title} is now your default group"
+    redirect_to @group
   end
 
 

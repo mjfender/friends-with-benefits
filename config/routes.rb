@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
   patch '/users/:id', to: 'users#update'
+  get '/users/set_default_group/:group_id', to: 'users#set_default_group', as: 'set_default_group'
 
   delete '/users/:id', to: 'users#destroy'
 
