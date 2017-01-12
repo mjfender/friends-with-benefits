@@ -1,12 +1,12 @@
 class Dashboard < ApplicationRecord
 require 'date'
 
-  def self.upcoming_events(days_in_future)
-    Event.where(time: (Date.today)..(Date.today + days_in_future))
+  def self.upcoming_events(days_in_future = 7)
+    Event.where(time: (Date.today)...(Date.today + days_in_future))
   end
 
   def self.created_last_week(object)
-    object.where(created_at: (Date.today - 7)..(Date.today))
+    object.where(created_at: (Date.today - 7)...(Date.today + 1))
   end
 
   def self.group_by_memberships

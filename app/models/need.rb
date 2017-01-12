@@ -3,7 +3,7 @@ class Need < ApplicationRecord
   has_many :replies
   has_many :events
   has_many :groups, through: :group_needs
-  has_many :group_needs
+  has_many :group_needs, dependent: :destroy
   validates :headline, presence: true, length: { maximum: 140}
 
   def self.mine_and_theirs(current_user_id)
