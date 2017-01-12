@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :needs do
     resources :events
   end
+   post '/needs/:need_id/events/:id/edit', to: 'events#edit'
   # params[:need_id], params[:id] for event.id
 
 
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   post '/users', to: 'users#create'
 
   get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
+  post '/users/:id/edit', to: 'users#edit'
   patch '/users/:id', to: 'users#update'
   get '/users/set_default_group/:group_id', to: 'users#set_default_group', as: 'set_default_group'
 

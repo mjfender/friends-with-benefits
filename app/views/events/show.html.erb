@@ -1,3 +1,4 @@
+<p><%= flash[:notice] %></p>
 <h1> Event Page </h1>
 
 <h3>Description:</h3>
@@ -5,7 +6,10 @@
 <h3>Location:</h3>
 <%= @event.location %>
 <h3>Time:</h3>
-<%= @event.time_formatted %>
+<%= @event.time_formatted %><br><br>
+
+<hr>
+
 <h3>Host:</h3>
 <%= link_to @event.need.user.name, user_path(@event.need.user)  %>
 <h3>Participant(s):</h3>
@@ -13,5 +17,14 @@
   <% unless event_user.user_id == @event.need.user.id %>
   <%= link_to event_user.user.name, user_path(event_user) %><br>
   <% end %>
-<% end %>
+<% end %><br>
 
+<hr>
+
+<br>
+
+<% if current_user == @event.need.user.id %>
+  <%= button_to "Edit Your Event", edit_need_event_path(@need, id: @event.id) %>
+  <%= button_to "Delete Event", { action: "destroy", id: @event.id, need_id: @need.id}, method: :delete%>
+
+<% end %>

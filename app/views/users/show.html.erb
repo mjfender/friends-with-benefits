@@ -26,8 +26,14 @@
 <% end %>
 <hr>
 
-<% if @user.id == current_user && !@user.events.blank? %>
-  <h2> My Events </h2>
+<h2> My Events </h2>
+<% if @user.id == current_user && @user.events.blank? %>
+  <p>You have no upcoming (or past) events! </p>
+  <p><%= link_to "Ask for help", new_need_path %> | <%= link_to "Start helping your friends today!", needs_path %> </p>
+<% end %>
+
+<% unless @user.id == current_user && !@user.events.blank? %>
+
   <% if @events[:upcoming_events] %>
     <h3> Upcoming Events </h3>
     <% @events[:upcoming_events].each do |event| %>
@@ -40,9 +46,10 @@
       <%= link_to "#{event.need.headline}", need_event_path(event.need, event) %> (<%= event.time_formatted %>)<br>
     <% end %>
   <% end %>
+  <hr>
 <% end %>
 <br>
-<hr>
+
 <% if @user.id == current_user %>
 <br>
 <%= button_to "Log Out", logout_path, :method => :get %></br>

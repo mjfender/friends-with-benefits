@@ -26,13 +26,16 @@ class Event < ApplicationRecord
   def self.upcoming_and_past(current_user_id)
     @me = User.find(current_user_id)
     my_events = @me.events.order(:time)
+    hash = {}
     unless my_events.blank?
       past_and_present = my_events.partition do |event|
         event.time >= Time.now
       end
-    end
-    { :upcoming_events => past_and_present[0],
+
+    hash = { :upcoming_events => past_and_present[0],
       :past_events => past_and_present[1].reverse }
+    end
+    hash
   end
 
 

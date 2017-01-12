@@ -22,6 +22,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @need = Need.find(params[:need_id])
   end
 
   def index
@@ -29,16 +30,28 @@ class EventsController < ApplicationController
   end
 
   def edit
-
+    @event = Event.find(params[:id])
+    @need = Need.find(params[:need_id])
   end
 
-
   def update
-
+    @need = Need.find(params[:need_id])
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      flash[:notice] = "You've successfully updated your event!"
+      redirect_to need_event_path(@need, id: @event.id)
+    else
+      flash[:notice] = "Edit was unsuccessful. Please re-enter your changes."
+      redirect_to edit_need_event_path(@need, id: @event.id)
+    end
   end
 
   def destroy
-
+    @need = Need.find(params[:need_id])
+    @event = Event.find(params[:id])
+    @event.destroy
+    flash[:notice] = "Your event was deleted."
+    redirect_to need_path(@need)
   end
 
   private
