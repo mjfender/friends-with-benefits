@@ -32,8 +32,7 @@
   <p><%= link_to "Ask for help", new_need_path %> | <%= link_to "Start helping your friends today!", needs_path %> </p>
 <% end %>
 
-<% unless @user.id == current_user && !@user.events.blank? %>
-
+<% if @user.id == current_user && !@user.events.blank? %>
   <% if @events[:upcoming_events] %>
     <h3> Upcoming Events </h3>
     <% @events[:upcoming_events].each do |event| %>
@@ -56,5 +55,6 @@
 <%= button_to "Log Out", logout_path, :method => :get, class: "#{default_button_class}" %></br></br>
 <%= button_to "Edit your Account", edit_user_path, class: "#{default_button_class}" %></br></br>
 <%= button_to "Delete your Account", @user, :method => :delete, class: "#{default_button_class}" %></br></br></br>
+
 
 <% end %>
