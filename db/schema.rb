@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 20170112165440) do
   create_table "memberships", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "user_id"
-    t.boolean  "admin",          default: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.boolean  "admin"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.datetime "request_admin"
     t.datetime "request_invite"
     t.boolean  "approved"
