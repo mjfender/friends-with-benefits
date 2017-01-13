@@ -16,39 +16,40 @@
 
 
 <% if @need.expiration %>
-<h2> Expiring on:</h2>
+<p> Expiring on:</p>
 <%= need_expiration_formatted %><br><br>
 <% end %>
 
 <br>
-<%= button_to "All Needs", needs_path, action: "get", method: "get", class: "#{default_button_class}"%><br>
+
+<% unless @need.participants.include?(@user) %>
+
+<%= form_for(new_reply_instance) do |f| %>
+      <%= f.hidden_field :need_id, :value => @need.id %>
+      <%= f.hidden_field :yes, :value => true %>
+      <%= f.submit "Yes, I'll help!", class: "#{default_button_class}"  %>
+      <% end %>
+  <% end %>
 
 <%= button_to "Reply", new_reply_path, action: "get", method: "get", params: {need_id: @need.id}, class: "#{default_button_class}" %>
 
 
 <h2>Replies</h2>
 <ul>
-<% if @replies.empty? %>
-  <p> Nobody has replied yet. Share your need and stay tuned! </p>
-<% else %>
-<% @replies.each do |reply| %>
-  <% if !reply.comment.nil? && !reply.comment.empty? %>
-  <li>"<%= reply.comment %>" &mdash; <%= link_to reply.user.name, user_path(reply.user) %><br>
-  <% if reply.yes %><strong>(Yes, I want to help!)</strong><% end %> </li>
+  <% if @replies.empty? %>
+    <p> Nobody has replied yet. Share your need and stay tuned! </p>
   <% else %>
-  <li>   <strong>Yes, I want to help!</strong> &mdash; <%= link_to reply.user.name, user_path(reply.user) %></li>
+    <% @replies.each do |reply| %>
+      <% if !reply.comment.nil? && !reply.comment.empty? %>
+         <li>"<%= reply.comment %>" &mdash; <%= link_to reply.user.name, user_path(reply.user) %><br>
+      <% end %>
+      <% if current_user == reply.user.id %>
+        <%= button_to "Edit your Reply", edit_reply_path(reply), class: "#{small_button_class}" %><br>
+
+        <%= button_to "Delete your Reply", delete_reply_path(reply), method: :delete, class: "#{small_button_class}"  %><br><br>
+      <% end %>
+    <% end %>
   <% end %>
-  <br> <% if current_user == reply.user.id %>
-  <%= button_to "Edit your Reply", edit_reply_path(reply), class: "#{small_button_class}" %><br>
-
-  <%= button_to "Delete your Reply", delete_reply_path(reply), method: :delete, class: "#{small_button_class}"  %><br><br>
-
-
-
-  <% end %>
-
-<% end %>
-<% end %>
 </ul>
 
 <h2> Event Details </h2>
@@ -64,6 +65,16 @@
 <% end %></br>
 
 
+<h2> Participants </h2>
+<% if @need.participants.include?(@user) %>
+   <%= link_to "Remove Thyself", remove_participant_path(@need, @user)  %>
+  <% end %>
+<ul>
+<% @need.participants.each do |participant| %>
+  <li><%= link_to participant.display_name(@user), participant %> </li>
+<% end %>
+
+</ul>
 
 <!-- Total number of replies, deadline -->
 <!-- Add list of replies with their users-->

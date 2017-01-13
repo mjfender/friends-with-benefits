@@ -6,6 +6,8 @@ Rails.application.routes.draw do
    post '/needs/:need_id/events/:id/edit', to: 'events#edit'
   # params[:need_id], params[:id] for event.id
 
+  match '/needs/:need_id/participants/:id/leave', to:'needs#remove_participant', as: "remove_participant", via: [:get, :post]
+
   match '/needs/:need_id/remove-from-group/:group_id', to: 'needs#remove_from_group', as: "remove_from_group",  via: [:get, :post]
 
 
