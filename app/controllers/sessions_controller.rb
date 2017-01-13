@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-
+require 'date'
   def new
 
   end
@@ -8,6 +8,8 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      session[:login_date] = Date.current
+      track_login
       redirect_to user_path(@user)
     else
       flash[:notice] = "You entered the wrong email and/or password. Try again."
@@ -16,7 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.clear
+    session[:user_id] = nil
     redirect_to '/'
   end
 
