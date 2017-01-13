@@ -1,5 +1,5 @@
 class Need < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   has_many :replies
   has_many :events
   has_many :groups, through: :group_needs
