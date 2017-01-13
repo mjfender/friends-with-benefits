@@ -21,11 +21,16 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.groups << Group.find(1)
     @user.default_group = 1
-    @user.save 
-    session[:user_id] = @user.id
-    session[:login_date] = Date.current
-    # change to Date.today
-    redirect_to user_path(@user)
+    @user.save
+    if @user.save
+      session[:user_id] = @user.id
+      session[:login_date] = Date.current
+      # change to Date.today
+      redirect_to user_path(@user)
+    else
+      flash[:notice] = "Missing required fields. Please enter at least a name, an email, and a password."
+      redirect_to root_path
+    end
   end
 
   def edit

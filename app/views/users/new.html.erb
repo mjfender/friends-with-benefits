@@ -1,28 +1,71 @@
 <%= flash[:notice] %>
-<h1> Ready to become a Friend with Benefits? </h1>
+
+<div class="center">
+  <h1> Ready to become a Friend with Benefits? </h1>
+</div>
 
 
 <br></br>
 
-<h2> Sign Up Below </h2></br>
+<div class="row">
 
-<%= form_for @user do |f| %>
+  <div class="col s6 center center white-text">
+    <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li><h4>Ask friends for help.</h4></li>
+    <li><h4>Get replies.</h4></li>
+    <li><h4>Create an event.</h4></li>
+    <li><h4>Friends with benefits!</h4></li>
+    </ul>
+  </div>
 
-  <%= f.label "Name: " %>
-  <%= f.text_field :name %></br></br>
-  <%= f.label "Email: " %>
-  <%= f.text_field :email %></br></br>
-  <%= f.label "Password: " %>
-  <%= f.password_field :password %></br></br>
-  <%= f.label "Confirm Password: " %>
-  <%= f.password_field :confirm_password %></br></br>
-  <%= f.label "Bio: " %></br>
-  <%= f.text_area :bio %></br></br></br>
-  <%= f.label "Photo: " %>
-  <%= f.file_field :avatar %></br></br></br>
-  <%= f.label "Zipcode: " %>
-  <%= f.text_field :zipcode %></br></br>
+  <div class="col s6 white-text">
+    <div class="center">
+      <h3>Log In</h3></br>
+    </div>
 
-<%= f.submit "Sign Up", class: "#{default_button_class}" %>
+    <%= form_tag '/sessions' do %>
+      <%= label_tag "Email: " %>
+      <%= text_field_tag :email %>
+      <%= label_tag "Password: " %>
+      <%= password_field_tag :password %></br>
+      <%= submit_tag "Log In", class: "#{default_button_class}" %></br></br></br></br>
+    <% end %>
+  </div>
 
-<% end %></br></br></br>
+</div>
+
+</br></br>
+
+
+
+<div class="col s12">
+
+  <h4> Sign Up Below </h4></br>
+
+  <%= form_for @user do |f| %>
+
+    <%= f.label "Name: " %>
+    <%= f.text_field :name %></br></br>
+    <%= f.label "Email: " %>
+    <%= f.text_field :email %></br></br>
+    <%= f.label "Password: " %>
+    <%= f.password_field :password %></br></br>
+    <%= f.label "Confirm Password: " %>
+    <%= f.password_field :confirm_password %></br></br>
+    <%= f.label "Bio: " %></br>
+    <%= f.text_area :bio %></br></br></br>
+    <%= f.label "Photo: " %>
+    <%= f.file_field :avatar %></br></br></br>
+    <%= f.label "Zipcode: " %>
+    <%= f.text_field :zipcode %></br></br>
+
+  <%= f.submit "Sign Up", class: "#{default_button_class}" %>
+
+  <% end %></br></br></br>
+</div>

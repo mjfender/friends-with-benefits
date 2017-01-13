@@ -30,7 +30,7 @@ li {
   overflow: hidden;
   display: inline-block;
   text-align: center;
-  
+
 }
 
 .thumbnail {
@@ -44,3 +44,8 @@ img {
   
   
 }
+
+div.row {
+    background: url('fwb-home.jpg') no-repeat center center fixed;
+    background-size: cover;
+ }
