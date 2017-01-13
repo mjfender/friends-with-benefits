@@ -18,11 +18,24 @@ class User < ApplicationRecord
     save
   end
 
+  def quit_group(group)
+    groups.delete(group)
+    remove_needs_from_group(group)
+  end
+
   def display_name(current_user)
     if current_user.is_a? Integer
       id == current_user ? "You" : name
     else
       self == current_user ? "You" : name
+    end
+  end
+
+  def remove_needs_from_group(group)
+    needs.each do |need|
+      if need.groups.include?(group)
+        need.groups.delete(group.id)
+      end
     end
   end
 

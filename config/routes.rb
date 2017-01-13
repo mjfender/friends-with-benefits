@@ -64,6 +64,8 @@ Rails.application.routes.draw do
 
   match '/groups/:group_id/memberships/approve-all/', to: 'memberships#approve_all_memberships', as: 'approve_all_group_membership', via: [:get, :post]
 
+  match '/groups/:group_id/memberships/leave', to: 'memberships#leave_group', as: 'leave_group', via: [:get, :post]
+
 
   get '/dashboards/index', to: 'dashboards#index', as: 'dashboard'
 

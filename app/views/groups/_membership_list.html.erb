@@ -1,4 +1,5 @@
 <% if @group.member?(@user) %>
+<%= link_to "Leave Group", leave_group_path(@group) %>
   <h3> Members:</h3><% @group.members.each do |member| %>
    <%= link_to member.display_name(@user.id), member %>
    <% if @group.admin?(@user) && @group.closed? %>
