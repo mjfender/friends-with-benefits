@@ -32,7 +32,7 @@ describe User do
     it 'can join a group' do
       user = User.new(name: 'Carl', email: 'carl@minion.net', password: 'word')
       tutors = Group.new
-      user.join(tutors)
+      user.join_group(tutors)
       expect(tutors.users).to include(user)
     end
   end

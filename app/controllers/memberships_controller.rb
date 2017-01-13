@@ -75,11 +75,11 @@ class MembershipsController < ApplicationController
   def revoke
     @group = Group.find(params[:group_id])
     if @group.admin?(@user)
-      @membership = Membership.find_by(group_id: params[:group_id], user_id: params[:user_id])
-      @membership.destroy
+      bad_member = User.find(params[:user_id])
+     remove_from_group(bad_member, @group)
     end
     flash[:notice] = "You have removed #{User.find(params[:user_id]).name} from your group"
-    redirect_to @membership.group
+    redirect_to @group
   end
 
 
@@ -93,6 +93,21 @@ class MembershipsController < ApplicationController
       end
     end
     redirect_to @group
+  end
+
+  def leave_group
+    @group = Group.find(params[:group_id])
+    remove_from_group(@user, @group)
+    flash[:notice] = "You have left the group"
+    redirect_to @group
+  end
+
+  private
+
+  def remove_from_group(user, group)
+    membership =  Membership.find_by(group_id: group.id, user_id: user.id)
+    membership.destroy
+    user.remove_needs_from_group(group)
   end
 
 end
