@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
   require 'date'
 
   def logged_in?
-    track_login
+    if session[:user_id]
+      track_login
+    end
     !!session[:user_id]
   end
 
@@ -29,12 +31,21 @@ class ApplicationController < ActionController::Base
   end
 
   def track_login
-    if session[:login_date] && DateTime.parse(session[:login_date]) < Date.current
-      session[:login_date] = Date.current
-      @user = User.find(session[:user_id])
-      @user.update_login_history
-      @user.save
+    if session[:login_date].class == Date
+      if session[:login_date] && session[:login_date] < Date.current
+        session[:login_date] = Date.current
+        @user = User.find(session[:user_id])
+        @user.update_login_history
+        @user.save
+      end
+    elsif session[:login_date]
+        session[:login_date] && DateTime.parse(session[:login_date]) < Date.current
+        session[:login_date] = Date.current
+        @user = User.find(session[:user_id])
+        @user.update_login_history
+        @user.save
     end
+
   end
 
   def need_belongs_to_user?
