@@ -4,6 +4,9 @@
   <%= f.text_field :title %>
   <%= f.label :description %>
   <%= f.text_area :description %>
+
+  <%= image_tag( @group.photo.url(:thumb), 
+                class: 'thumbnail') %>
   <%= f.label :photo %>
   <%= f.file_field :photo %>
   <%= f.label :open %>

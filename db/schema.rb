@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170113141559) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +106,7 @@ ActiveRecord::Schema.define(version: 20170113141559) do
     t.string   "admin",               default: "f"
     t.integer  "logins_count",        default: 0
     t.datetime "logins_last"
+    t.integer  "needs_count"
   end
 
   add_foreign_key "group_needs", "groups"

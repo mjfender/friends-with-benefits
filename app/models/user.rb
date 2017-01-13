@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true
   require 'date'
-  
+
   def join_group(new_group)
     groups << new_group
     save
@@ -47,5 +47,6 @@ class User < ApplicationRecord
     # change to Date.today after testing by hour
     #self.logins_last = Date.today
   end
+
 
 end
