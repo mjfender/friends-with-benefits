@@ -16,6 +16,55 @@
 
 <hr>
 
-<h2>Group Stats (More to Come)</h2>
+<h2>User Stats</h2>
+
+<p>Our neediest user, <strong><%= @needy_users.first.name %></strong>, posted <strong><%= @needy_users.first.needs_count %></strong> needs.</p>
+<p>Other needy users include: </p>
+<ul>
+<% @needy_users.first(10).each do |user| %>
+  <% unless user == @needy_users.first %>
+    <li><strong><%= user.name %></strong>
+      <% unless user.needs_count == nil %>
+        posted <strong><%= user.needs_count %></strong> needs.
+      <% end %>
+      </li>
+    <% end %>
+<% end %>
+</ul>
+
+<p>Our most helpful user, <strong><%= @helpful_users.first.name %></strong>, offered to help <strong><%= @helpful_users.first.replies.count %> times. </strong> </p>
+<p>Other helpful users include: </p>
+<ul>
+<% @helpful_users.first(10).each do |user| %>
+  <% unless user == @helpful_users.first %>
+    <li><strong><%= user.name %></strong>
+      <% unless user.replies.count == nil %>
+        helped <strong><%= user.replies.count %> friends.</strong>
+      <% end %>
+      </li>
+    <% end %>
+<% end %>
+</ul>
+
+<hr>
+
+<h2>Log In Stats</h2>
+
+<p><strong><%= @users_last_week.count %></strong> users logged in this past week.</p>
+<p><strong><%= @users_last_month.count %></strong> users logged in this past month.</p>
+<p>There are currently <strong><%= @inactive_users.count %></strong> inactive users.</p>
+
+
+<hr>
+
+<h2>Group Stats</h2>
 
 <p><strong><%= @group_by_memberships.first.title %></strong> currently has the most members. </p>
+<p>Other growing groups include:</p>
+<ul>
+<% @group_by_memberships.first(10).each do |group| %>
+  <% unless group == @group_by_memberships.first %>
+    <li><strong><%= group.title %></strong> with <strong><%= group.memberships.count %></strong> members.</li>
+  <% end %>
+<% end %>
+</ul>

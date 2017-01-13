@@ -13,6 +13,24 @@ require 'date'
     Group.order(memberships_count: :desc)
   end
 
+  def self.helpful_users
+    h = User.joins(:replies).group(:user_id).count
+    sort = h.sort_by {|id, count| count}
+    sort.reverse.map do |array|
+      User.find(array[0])
+    end
+  end
+
+  def self.users_active_last(days = 7)
+    User.where("logins_last > ?", Date.current - days)
+  end
+
+  def self.inactive_users(days = 30)
+    User.where("logins_last < ?", Date.current - days)
+  end
+
+
+
 
 end
 
