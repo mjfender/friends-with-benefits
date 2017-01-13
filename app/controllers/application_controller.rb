@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
   require 'date'
 
   def logged_in?
-    track_login
+    if session[:user_id]
+      track_login
+    end
     !!session[:user_id]
   end
 
