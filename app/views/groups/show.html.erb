@@ -13,7 +13,7 @@
 <hr>
 <h3> Admins:</h3>
 <% @group.admins.each do |admin| %>
-<%= link_to admin.display_name(@user.id), admin %>
+<%= profile_pic(admin) %>
 <% end %>
 <hr>
 

@@ -56,6 +56,10 @@ class Group < ApplicationRecord
     self.users.count
   end
 
+  def display_name(current_user = nil)
+    title
+  end
+
   def default_group?(user)
     id == user.default_group
   end

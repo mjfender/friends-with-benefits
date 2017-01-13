@@ -5,7 +5,7 @@
   <div>
   <% @group.members.each do |member| %>
 
-   <%= link_to member.display_name(@user.id), member %>
+   <%= profile_pic(member) %>
    <% if @group.admin?(@user) && @group.closed? %>
    <%= link_to 'x', revoke_membership_path(@group, member) %>
    <% end %>
