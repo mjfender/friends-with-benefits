@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "user_default.png"
+  include Avatarable
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment :avatar,
   content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
   has_secure_password
@@ -17,6 +18,10 @@ class User < ApplicationRecord
   def join_group(new_group)
     groups << new_group
     save
+  end
+
+  def avatar_text
+    name.chr
   end
 
   def quit_group(group)
@@ -46,6 +51,11 @@ class User < ApplicationRecord
     self.logins_last = Date.current
     # change to Date.today after testing by hour
     #self.logins_last = Date.today
+  end
+
+  private
+  def set_default_url_on_user
+    self.avatar_url
   end
 
 

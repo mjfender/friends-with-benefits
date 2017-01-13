@@ -1,7 +1,7 @@
 <% if @group.member?(@user) %>
 
   <h3> Members:</h3>
-  <%= link_to "Leave Group", leave_group_path(@group) %>
+  <%= @group.members.count %> members strong | <%= link_to "Leave Group", leave_group_path(@group) %>
   <div>
   <% @group.members.each do |member| %>
 
