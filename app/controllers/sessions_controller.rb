@@ -19,6 +19,7 @@ require 'date'
 
   def destroy
     session[:user_id] = nil
+    flash[:notice] = "Successfully logged out! We'll see you next time!"
     redirect_to '/'
   end
 
