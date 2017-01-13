@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170113141559) do
 
   # These are extensions that must be enabled in order to support this database
@@ -54,9 +55,9 @@ ActiveRecord::Schema.define(version: 20170113141559) do
   create_table "memberships", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "user_id"
-    t.boolean  "admin"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.boolean  "admin",          default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.datetime "request_admin"
     t.datetime "request_invite"
     t.boolean  "approved"
@@ -102,6 +103,8 @@ ActiveRecord::Schema.define(version: 20170113141559) do
     t.datetime "avatar_updated_at"
     t.integer  "default_group",       default: 1
     t.string   "admin",               default: "f"
+    t.integer  "logins_count",        default: 0
+    t.datetime "logins_last"
   end
 
   add_foreign_key "group_needs", "groups"
