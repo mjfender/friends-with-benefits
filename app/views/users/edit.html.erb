@@ -10,8 +10,6 @@
   <%= f.text_field :name %></br></br>
   <%= f.label "Bio: " %>
   <%= f.text_area :bio %></br></br>
-  <%= image_tag( @user.photo.url(:thumb), 
-                class: 'thumbnail') %>
   <%= f.label "Photo: " %>
   <%= f.file_field :avatar %></br></br>
   <%= f.label "Zipcode: " %>

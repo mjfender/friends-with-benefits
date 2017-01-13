@@ -26,13 +26,21 @@ li {
 }
 
 .avatar {
-max-width: 125px;
-  max-height: 125px;
-  border-radius: 50%;
+  
   overflow: hidden;
+  display: inline-block;
+  text-align: center;
   
 }
 
+.thumbnail {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 100%;
+  display: inline-block;
+}
 img {
-  max-width: 100%
+  max-width: 100%;
+  
+  
 }

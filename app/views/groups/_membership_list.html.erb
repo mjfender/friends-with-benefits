@@ -1,11 +1,17 @@
 <% if @group.member?(@user) %>
-<%= link_to "Leave Group", leave_group_path(@group) %>
-  <h3> Members:</h3><% @group.members.each do |member| %>
+
+  <h3> Members:</h3>
+  <%= link_to "Leave Group", leave_group_path(@group) %>
+  <div>
+  <% @group.members.each do |member| %>
+
    <%= link_to member.display_name(@user.id), member %>
    <% if @group.admin?(@user) && @group.closed? %>
    <%= link_to 'x', revoke_membership_path(@group, member) %>
    <% end %>
+
    <% end %>
+   </div>
 <% else %>
 <h3> Members: </h3>
   <%= @group.member_count %> happy members!
