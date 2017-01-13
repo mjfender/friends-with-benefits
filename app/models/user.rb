@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true
   require 'date'
-  
+
   def join_group(new_group)
     groups << new_group
     save
@@ -35,10 +35,10 @@ class User < ApplicationRecord
 
   def remove_needs_from_group(group)
     needs.each do |need|
-      if need.groups.include?(group)
-        need.groups.delete(group.id)
-      end
+    if need.groups.include?(group)
+      need.groups.delete(group.id)
     end
+  end
 
   def update_login_history
     self.logins_count +=1
@@ -46,5 +46,5 @@ class User < ApplicationRecord
     # change to Date.today after testing by hour
     #self.logins_last = Date.today
   end
-
+end
 end
