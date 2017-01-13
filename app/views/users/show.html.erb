@@ -41,13 +41,13 @@
   <% if @events[:upcoming_events] %>
     <h4> Upcoming Events </h4>
     <% @events[:upcoming_events].each do |event| %>
-     <%= link_to "#{event.need.headline}", need_event_path(event.need, event) %> (<%= event.time_formatted %>)<br>
+     <%= link_to "#{event.title}", need_event_path(event.need, event) %> (<%= event.time_formatted %>)<br>
     <% end %>
   <% end %>
   <% if @events[:past_events] %>
     <h4> Past Events </h4>
     <% @events[:past_events].each do |event| %>
-      <%= link_to "#{event.need.headline}", need_event_path(event.need, event) %> (<%= event.time_formatted %>)<br>
+      <%= link_to "#{event.title}", need_event_path(event.need, event) %> (<%= event.time_formatted %>)<br>
     <% end %>
   <% end %>
   <hr>
