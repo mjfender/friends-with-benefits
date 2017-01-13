@@ -10,9 +10,17 @@ class Need < ApplicationRecord
     needs = all.partition do |need|
       need.user_id == current_user_id.to_i
     end
-
     { :my_needs => needs[0],
       :others_needs => needs[1]}
+  end
+
+  def participants
+    user_ids = Reply.where(need_id: id, yes: true).pluck(:user_id).uniq
+    User.find(user_ids)
+  end
+
+  def replies
+    Reply.where(need_id: id).where.not(comment: nil)
   end
 
   def owner?(current_user)
@@ -22,6 +30,7 @@ class Need < ApplicationRecord
   def admin?(opt)
     opt[:controller] == "groups" && Group.find(opt[:id]).admin?(opt[:user])
   end
+
 
 
 end

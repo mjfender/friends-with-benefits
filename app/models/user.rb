@@ -39,6 +39,7 @@ class User < ApplicationRecord
         need.groups.delete(group.id)
       end
     end
+  end
 
   def update_login_history
     self.logins_count +=1

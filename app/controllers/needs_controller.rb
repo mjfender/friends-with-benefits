@@ -66,6 +66,12 @@ class NeedsController < ApplicationController
     redirect_to @group
   end
 
+  def remove_participant
+    @need = Need.find(params[:need_id])
+    Reply.where(need_id: params[:need_id], user_id:params[:id], yes: true ).delete_all
+    redirect_to @need
+  end
+
   private
   def need_params
     params.require(:need).permit(:headline, :description, :expiration, :completed, :perk, group_ids: [])
