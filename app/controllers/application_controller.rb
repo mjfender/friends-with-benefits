@@ -3,8 +3,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :need_belongs_to_user?, :authorize_user, :logged_in?, :need_expiration_formatted, :new_reply_instance, :current_user, :default_button_class, :small_button_class
 
+  require 'date'
 
   def logged_in?
+    track_login
     !!session[:user_id]
   end
 
@@ -23,6 +25,15 @@ class ApplicationController < ActionController::Base
   def authorize_user
     unless logged_in?
       redirect_to signin_path
+    end
+  end
+
+  def track_login
+    if session[:login_date] && DateTime.parse(session[:login_date]) < Date.current
+      session[:login_date] = Date.current
+      @user = User.find(session[:user_id])
+      @user.update_login_history
+      @user.save
     end
   end
 
