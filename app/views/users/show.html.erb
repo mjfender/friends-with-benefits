@@ -7,7 +7,10 @@
 
 <hr>
 <h2><%= @user.name %></h2>
-<%= image_tag @user.avatar.url(:thumb) %>
+<div class="avatar">
+<%= image_tag @user.avatar.url(:thumb), class: "thumbnail" %>
+
+</div>
 
 <h3>Bio:</h3><%= @user.bio %>
 <% unless @user.groups.blank? %>
