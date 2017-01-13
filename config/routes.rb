@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   match '/needs/:need_id/remove-from-group/:group_id', to: 'needs#remove_from_group', as: "remove_from_group",  via: [:get, :post]
 
+  get "avatar/:size/:background/:text" => Dragonfly.app.endpoint { |params, app|
+  app.generate(:initial_avatar, URI.unescape(params[:text]), { size: params[:size], background_color: params[:background] })
+}, as: :avatar
+
 
   resources :groups do
     resources :memberships, except: ["show"]

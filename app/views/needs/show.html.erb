@@ -71,7 +71,7 @@
   <% end %>
 <ul>
 <% @need.participants.each do |participant| %>
-  <li><%= link_to participant.display_name(@user), participant %> </li>
+  <%= profile_pic(participant) %>
 <% end %>
 
 </ul>
