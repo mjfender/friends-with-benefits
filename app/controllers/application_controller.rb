@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   end
 
   def small_button_class
-    ""
+    "white red-text"
   end
 
 end
