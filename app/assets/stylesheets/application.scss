@@ -24,3 +24,15 @@ body {
 li {
   padding-bottom: .35em;
 }
+
+.avatar {
+max-width: 125px;
+  max-height: 125px;
+  border-radius: 50%;
+  overflow: hidden;
+  
+}
+
+img {
+  max-width: 100%
+}
