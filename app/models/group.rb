@@ -4,10 +4,10 @@ class Group < ApplicationRecord
   has_many :memberships
   has_many :users, through: :memberships
 
-  has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "default.png"
+  has_attached_file :photo, styles: { medium: "300x300>", thumb: "20x20" }, default_url: "default.png"
   validates_attachment :photo,
   content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
-  
+
   def open?
     !!open
   end

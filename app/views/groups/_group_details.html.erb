@@ -7,11 +7,11 @@
 
 
 
-<h1> <%= @group.title %> </h1>
-<h2> <%= @group.description %> </h2>
+<h2> <%= @group.title %> </h2>
+<h4> <%= @group.description %> </h4>
 
 <div class="tc pa4">
-<%= image_tag( @group.photo.url(:thumb), 
+<%= image_tag( @group.photo.url(:thumb),
                 class: 'br-100 pa1 ba b--black-10 h3 w3') %>
 
 </div>
