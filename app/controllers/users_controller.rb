@@ -23,6 +23,8 @@ class UsersController < ApplicationController
     @user.default_group = 1
     @user.save 
     session[:user_id] = @user.id
+    session[:login_date] = Date.current
+    # change to Date.today
     redirect_to user_path(@user)
   end
 
