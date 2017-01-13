@@ -9,22 +9,30 @@
 
 <div class="row">
 
-  <div class="col s6 center">
-    <h4>Ask friends for help.</h4>
-    <h4>Get replies.</h4>
-    <h4>Create an event.</h4>
-    <h4>Friends with benefits!</h4>
+  <div class="col s6 center center white-text">
+    <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li><h4>Ask friends for help.</h4></li>
+    <li><h4>Get replies.</h4></li>
+    <li><h4>Create an event.</h4></li>
+    <li><h4>Friends with benefits!</h4></li>
+    </ul>
   </div>
 
-  <div class="col s6">
+  <div class="col s6 white-text">
     <div class="center">
-      <h4>Log In</h4></br>
+      <h3>Log In</h3></br>
     </div>
 
     <%= form_tag '/sessions' do %>
-      <%= label_tag :email %>
+      <%= label_tag "Email: " %>
       <%= text_field_tag :email %>
-      <%= label_tag :password %>
+      <%= label_tag "Password: " %>
       <%= password_field_tag :password %></br>
       <%= submit_tag "Log In", class: "#{default_button_class}" %></br></br></br></br>
     <% end %>

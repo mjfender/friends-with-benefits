@@ -30,9 +30,14 @@ max-width: 125px;
   max-height: 125px;
   border-radius: 50%;
   overflow: hidden;
-  
+
 }
 
 img {
   max-width: 100%
 }
+
+div.row {
+    background: url('fwb-home.jpg') no-repeat center center fixed;
+    background-size: cover;
+ }
