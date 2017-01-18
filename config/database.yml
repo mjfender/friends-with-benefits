@@ -81,5 +81,15 @@ test:
 production:
   <<: *default
   database: git-er-done_production
-  username: git-er-done
-  password: <%= ENV['GIT-ER-DONE_DATABASE_PASSWORD'] %>
+  username: fwb
+  password: <%= ENV['FWB_DATABASE_PASSWORD'] %>
+
+#in postgres CLI
+  # create role git-er-done login createdb
+  # \q
+
+# \du to see users, \l to see list
+
+
+# then $ RAILS_ENV=production bundle exec rake db:create db:schema:load
+
