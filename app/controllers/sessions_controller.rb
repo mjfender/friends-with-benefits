@@ -9,7 +9,6 @@ require 'date'
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       session[:login_date] = Date.current
-      binding.pry
       track_login
       redirect_to user_path(@user)
     else
