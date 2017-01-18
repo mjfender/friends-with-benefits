@@ -8,6 +8,11 @@ require 'date'
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      # checks logging-in users to see what their last login date was and updates it
+      if @user.logins_last < Date.current 
+        @user.update_login_history
+        @user.save
+      end
       session[:login_date] = Date.current
       track_login
       redirect_to user_path(@user)
