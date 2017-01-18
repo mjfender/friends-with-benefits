@@ -31,7 +31,6 @@ class ApplicationController < ActionController::Base
   end
 
   def track_login
-    binding.pry
     if session[:login_date].class == Date || session[:login_date].class == String
       if session[:login_date].class == Date && session[:login_date] < Date.current
         session[:login_date] = Date.current
