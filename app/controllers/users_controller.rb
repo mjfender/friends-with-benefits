@@ -25,6 +25,8 @@ require 'date'
     if @user.save
       session[:user_id] = @user.id
       session[:login_date] = Date.current
+      @user.update_login_history
+      @user.save
       redirect_to user_path(@user)
     else
       flash[:notice] = "Missing required fields. Please enter at least a name, an email, and a password."

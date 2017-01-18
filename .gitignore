@@ -19,3 +19,6 @@
 Gemfile.lock
 
 /public/users/avatars/*
+
+# Ignore application configuration
+/config/application.yml
