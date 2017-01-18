@@ -31,19 +31,18 @@ class ApplicationController < ActionController::Base
   end
 
   def track_login
-    if session[:login_date].class == Date
-      if session[:login_date] && session[:login_date] < Date.current
+    if session[:login_date].class == Date || session[:login_date].class == String
+      if session[:login_date].class == Date && session[:login_date] < Date.current
+        session[:login_date] = Date.current
+        @user = User.find(session[:user_id])
+        @user.update_login_history
+        @user.save
+      elsif session[:login_date].class == String && Date.parse(session[:login_date]) < Date.current
         session[:login_date] = Date.current
         @user = User.find(session[:user_id])
         @user.update_login_history
         @user.save
       end
-    elsif session[:login_date]
-        session[:login_date] && DateTime.parse(session[:login_date]) < Date.current
-        session[:login_date] = Date.current
-        @user = User.find(session[:user_id])
-        @user.update_login_history
-        @user.save
     end
 
   end

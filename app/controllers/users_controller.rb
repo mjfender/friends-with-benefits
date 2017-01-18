@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+require 'date'
   def index
     @users = User.all
   end
@@ -25,7 +25,6 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       session[:login_date] = Date.current
-      # change to Date.today
       redirect_to user_path(@user)
     else
       flash[:notice] = "Missing required fields. Please enter at least a name, an email, and a password."
