@@ -12,6 +12,9 @@ class Need < ApplicationRecord
     end
     { :my_needs => needs[0],
       :others_needs => needs[1]}
+    # i think this is a cool idea
+    # however, i also think you should break these out into two different
+    # methods that you'd call in the controller and pass to the view.
   end
 
   def participants
@@ -20,6 +23,10 @@ class Need < ApplicationRecord
   end
 
   def replies
+    # isn't this a has_many relationship? 
+    # may conflict with the association you've set up above.
+    # so perhaps renaming this and doing a query like
+    # self.replies.where.not(comment: nil) could work
     Reply.where(need_id: id).where.not(comment: nil)
   end
 
@@ -29,6 +36,7 @@ class Need < ApplicationRecord
 
   def admin?(opt)
     opt[:controller] == "groups" && Group.find(opt[:id]).admin?(opt[:user])
+    # this method is a little unclear to me
   end
 
 

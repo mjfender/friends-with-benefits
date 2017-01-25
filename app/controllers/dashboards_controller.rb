@@ -3,6 +3,11 @@ class DashboardsController < ApplicationController
 
 
   def index
+    # here'd i'd initialize @dashboard = Dashboard.new
+    # pass that through to the view and then in the view, call methods like
+    # @dashboard.upcoming_events
+    # @dashboard.created_last_week
+    # etc
     @upcoming_events = Dashboard.upcoming_events(7)
     @events_created_last_week = Dashboard.created_last_week(Event)
     @needs_created_last_week = Dashboard.created_last_week(Need)

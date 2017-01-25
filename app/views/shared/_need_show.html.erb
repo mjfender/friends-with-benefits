@@ -1,5 +1,6 @@
 <div>
 <% if need.admin?(user: @user, controller: params[:controller], id: params[:id]) %>
+  <!-- what's happening here? too much logic for the view -->
   <%= link_to 'Remove Need From Group', remove_from_group_path(need, params[:id]) %><br />
 <% end %>
 

@@ -1,5 +1,24 @@
 class Dashboard < ApplicationRecord
 require 'date'
+# Whoa this is really cool
+# This is the essence of a view object or presenter in that you're using an
+# object to encapsulate a lot of the complex logic you need for the view
+#
+# So in that sense, you should make another directory called presenters or
+# view_objects and stick this file in there
+# then, I would make all of these methods instance methods and instantiate a
+# new dashboard to pass through to the view
+
+# in the controller you could say something like @dashboard =
+# Dashboard.new
+#
+# in the view, you could write
+# @dashboard.upcoming_events
+# @dashboard.created_last_week
+# etc
+
+# Also, because it's not a database-backed model, you don't need to inherit
+# from ApplicationRecord
 
   def self.upcoming_events(days_in_future = 7)
     Event.where(time: (Date.today)...(Date.today + days_in_future))

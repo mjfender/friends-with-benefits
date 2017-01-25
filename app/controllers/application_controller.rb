@@ -47,19 +47,29 @@ class ApplicationController < ActionController::Base
 
   end
 
+  # this should probably be a method called on the Need instance and written
+  # on the Need class
   def need_belongs_to_user?
     @need.user.id == @user.id
   end
 
   def need_expiration_formatted
+    # since this is view-related, i'd put it in a helper or a view object or
+    # presenter
     @need.expiration.strftime("%B %d, %Y")
   end
 
   def new_reply_instance
+    # this feels weird here. would probably move it closer to where it's
+    # being used
     Reply.new
   end
 
   private
+  # this is cool, but I'd probably move this into application helper since
+  # it's just styling
+  # Anything that's purely view related should go in there.
+  # ApplicationController is more for shared behavior among controllers
 
   def default_button_class
     "waves-effect waves-light btn red accent-4"
