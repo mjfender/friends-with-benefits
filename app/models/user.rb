@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include Avatarable
+  # include Avatarable
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment :avatar,
   content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
@@ -15,14 +15,17 @@ class User < ApplicationRecord
   validates :email, presence: true
   require 'date'
 
+  def avatar_url
+  end
+
   def join_group(new_group)
     groups << new_group
     save
   end
 
-  def avatar_text
-    name.chr
-  end
+  # def avatar_text
+  #   name.chr
+  # end
 
   def quit_group(group)
     groups.delete(group)

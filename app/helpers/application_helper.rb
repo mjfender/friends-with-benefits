@@ -11,7 +11,7 @@ module ApplicationHelper
     if model.avatar.file?
       image_tag model.avatar.url(:thumb), options
     else
-      image_tag model.avatar_url, options
+      image_tag "user_default.png", options
     end
   end
 
