@@ -10,7 +10,7 @@ Created by: [Matt Fender] (https://github.com/mjfender/), [Elizabeth Jacobs] (ht
 
 We believe there should be an easy way for people to tap into their existing networks and get the help they need.  This strengthens communities and makes the sharing economy personal and hyper-local.
 
-Apps like TaskRabbit are great for finding an expert or professional, but many everyday tasks can be easily fulfilled by a friend or neighbor. FwB is designed specifically to connect users to the help they need or could give to others
+Apps like TaskRabbit are great for finding an expert or professional, but many everyday tasks can be easily fulfilled by a friend or neighbor. FwB is designed specifically to connect users to the help they need or could give to others.
 
 **Stack**
 
@@ -37,7 +37,7 @@ Meet Sally. Sally is new New Yorker and is busy getting her apartment set up. Sh
 * materialize-sass 0.97.8
 
 **Approach**
-* Adhered to RESTful conventions to follow best practices and write easily readable code
+* Followed RESTful conventions to use best practices and write easily readable code
 * Employed an MVC pattern to efficiently organize the project files
 * Utilized the Materialize CSS library to add custom styling to our views 
 * Made a secure sign-up and login process, leveraging the session store to authenticate users and limit access
