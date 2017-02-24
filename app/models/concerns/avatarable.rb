@@ -1,6 +1,9 @@
 module Avatarable
   extend ActiveSupport::Concern
 
+    # If you do this, I'd advise storing the hex codes in a hash instead of
+  # an array. That way, you could also give them descriptive names for
+  # future reference
   AVATAR_COLORS = [ 'e53935', 'b71c1c', 'd81b60', '880e4f', '8e24aa', '4a148c',
     '5e35b1', '311b92', '3949ab', '1a237e', '1e88e5', '0d47a1', '039be5', '01579b',
     '00acc1', '006064', '00897b', '004d40', '43a047', '1b5e20', '7cb342', '33691e',
@@ -9,6 +12,8 @@ module Avatarable
 
   included do
     delegate :url_helpers, to: 'Rails.application.routes'
+    # dope...this could get dangerous, but props to you guys for figuring
+    # this out
   end
 
   def avatar_url
@@ -24,6 +29,7 @@ module Avatarable
   end
 
   def avatar_text
+    # very cool
     raise NotImplementedError, "must implement avatar_text"
   end
 

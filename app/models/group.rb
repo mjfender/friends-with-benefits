@@ -10,10 +10,12 @@ class Group < ApplicationRecord
 
   def open?
     !!open
+    # this is a great convention to use going forward
   end
 
   def closed?
     !open?
+    # also awesome
   end
 
   def set_admin(user)
@@ -67,6 +69,7 @@ class Group < ApplicationRecord
   def admins
     admins_membership = Membership.where(group_id: id, admin: true)
     admins_membership.collect { |membership| membership.user}
+    # I think you could join User on Memberships to get the admins.
   end
 
   def admin?(current_user)

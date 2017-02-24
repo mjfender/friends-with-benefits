@@ -11,9 +11,11 @@
 <hr>
 
 <h3>Host:</h3>
+<!-- this is a bit in violation of the law of demeter. too much chaining. try delegating instead -->
 <%= link_to @event.need.user.name, user_path(@event.need.user)  %>
 <h3>Participant(s):</h3>
 <% @event.event_users.each do |event_user| %>
+  <!-- this should be a helper method probably -->
   <% unless event_user.user_id == @event.need.user.id %>
   <%= link_to event_user.user.name, user_path(event_user) %><br>
   <% end %>

@@ -20,6 +20,7 @@ class Event < ApplicationRecord
   end
 
   def time_formatted
+    # seems view specific...would probably drop it in helpers instead
     self.time.strftime("%I:%M%p on %B %d, %Y")
   end
 
